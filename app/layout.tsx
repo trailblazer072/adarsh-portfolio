@@ -9,10 +9,16 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" })
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+  title: {
+    default: "Adarsh | Portfolio",
+    template: "%s | Adarsh Portfolio",
+  },
+  description: "Explore Adarsh's projects, experience, and creative work.",
+  keywords: ["Adarsh", "Portfolio", "Developer", "Projects", "Web Development"],
+  authors: [{ name: "Adarsh" }],
+  generator: "Next.js",
 }
+
 
 export default function RootLayout({
   children,
