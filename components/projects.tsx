@@ -11,14 +11,24 @@ import Link from "next/link"
 export default function Projects() {
   const projects = [
     {
-      title: "Shapify: Real-time Collaborative Whiteboard",
-      description: "Collaborative Real-Time Canvas",
+      title: "FileVault - Secure File Sharing Platform",
+      description: "Designed a responsive dashboard with file search, preview, starred items, and shareable secure links.",
+      image: "/FileVault.png",
+      tags: ["React", "Node.js", "Express", "MongoDB", "AWS S3", "JWT"],
+      github: "https://github.com/trailblazer072/File-sharing-app",
+      demo: "",
+      live: "https://file-sharing-app-px2e.vercel.app/",
+      inProduction: true
+    },
+    {
+      title: "Shapify - Collaborative Whiteboard",
+      description: "Developed a real-time collaborative whiteboard application with features like freehand drawing, shape creation, text editing, and undo/redo functionality.",
       image: "/Shapify.png",
-      tags: ["TypeScript", "NextJs", "WebSockets","Prisma ORM", "PostgreSQL"], 
+      tags: ["TypeScript", "NextJs", "WebSockets", "Prisma ORM", "PostgreSQL"],
       github: "https://github.com/trailblazer072/Shapify---Collaborative-Real-Time-Whiteboard",
       demo: "",
-      live:"https://ai-trading-insight-tool.vercel.app/",
-      inProduction:true
+      live: "https://ai-trading-insight-tool.vercel.app/",
+      inProduction: true
     },
     // {
     //   title: "PlayPlan – Your AI-content Planner",
@@ -31,14 +41,14 @@ export default function Projects() {
     //   inProduction:true
     // },
     {
-      title: "Beiyo – Find Your Perfect Stay Today",
-      description: <>Scalable Hostel Management for a <strong className="font-medium text-foreground/90">$1M Startup</strong></>,
+      title: "Beiyo - Hostel Management",
+      description: "Scalable Hostel Management for a $1M Startup",
       image: "/Beiyo.jpg",
       tags: ["JavaScript", "React", "Node.js", "MongoDB", "AWS"],
       github: "",
       demo: "",
-      live:"https://beiyo.in/",
-      inProduction:true
+      live: "https://beiyo.in/",
+      inProduction: true
     },
     // {
     //   title: "Swing – Instagram DM Automation",
@@ -50,7 +60,7 @@ export default function Projects() {
     //   live:"",
     //   inProduction:false
     // }
-  
+
     // {
     //   title: "E-Commerce Platform",
     //   description: "A full-featured e-commerce platform with payment processing, inventory management, and analytics.",
@@ -113,13 +123,13 @@ export default function Projects() {
 
             <motion.div key={index} variants={item} className="w-full max-w-sm">
               <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 relative pt-0">
-              {project.inProduction===false && (
+                {project.inProduction === false && (
                   <div className="absolute top-2 right-2 z-10">
                     <Badge className="bg-white opacity-60 text-black">In Progress</Badge>
                   </div>
                 )}
                 <div className="relative h-48 overflow-hidden">
-               
+
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
@@ -128,7 +138,7 @@ export default function Projects() {
                   />
                 </div>
                 <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
+                  <CardTitle className="leading-normal">{project.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <p className="text-muted-foreground mb-4 ">{project.description}</p>
@@ -142,20 +152,20 @@ export default function Projects() {
                 </CardContent>
                 <CardFooter className="flex justify-between">
                   {
-                    project.github!==""&&(
+                    project.github !== "" && (
                       <Button asChild variant="outline" size="sm">
-                      <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4 mr-2" /> Code
-                      </Link>
-                  </Button>
+                        <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" /> Code
+                        </Link>
+                      </Button>
                     )
                   }
-                 {project.demo!==""&&( <Button asChild size="sm">
+                  {project.demo !== "" && (<Button asChild size="sm">
                     <Link href={project.demo} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-4 w-4 mr-2" /> Demo
                     </Link>
                   </Button>)}
-                  {project.live!==""&&( <Button asChild size="sm">
+                  {project.live !== "" && (<Button asChild size="sm">
                     <Link href={project.live} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="h-4 w-4 mr-2" /> Live
                     </Link>
