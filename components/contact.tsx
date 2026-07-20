@@ -33,7 +33,7 @@ export default function Contact() {
             <Magnetic>
               <a
                 className="glow-hover inline-flex items-center gap-2 p-2 rounded-full border border-(--color-border)"
-                href="https://github.com/trailblazer072"
+                href="https://github.com/adarshGit-hub"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
