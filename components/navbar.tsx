@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { Menu, X } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Menu, X, Clock } from "lucide-react"
 import PersonaSwitcher from "./persona-switcher"
 import { useSound } from "@/lib/sound-context"
 
@@ -16,7 +16,25 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [time, setTime] = useState<string>("")
   const { playHoverTick } = useSound()
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date()
+      const istString = now.toLocaleTimeString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour12: false,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      })
+      setTime(istString)
+    }
+    updateTime()
+    const timer = setInterval(updateTime, 1000)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/[0.08] bg-[#050508]/80 backdrop-blur-2xl">
@@ -54,8 +72,16 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right Action: Anubhav Choubey Persona Switcher + Mobile Toggle */}
-        <div className="flex items-center gap-3">
+        {/* Right Action: Studio Clock + Persona Switcher + Mobile Toggle */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Live IST Studio Clock */}
+          <div className="hidden sm:flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1.5 font-mono text-xs text-zinc-400 shadow-[0_0_12px_rgba(0,242,254,0.08)] whitespace-nowrap shrink-0">
+            <Clock className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+            <span className="hidden xl:inline whitespace-nowrap">INDORE, IN (IST):</span>
+            <span className="inline xl:hidden whitespace-nowrap">IST:</span>
+            <span className="font-semibold text-cyan-300 font-mono tracking-wider whitespace-nowrap">{time || "19:09:11"}</span>
+          </div>
+
           <PersonaSwitcher />
 
           <button
@@ -73,7 +99,14 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {open && (
-        <div className="border-t border-white/10 bg-[#0c0c0e]/95 px-6 py-4 backdrop-blur-2xl md:hidden">
+        <div className="border-t border-white/10 bg-[#0c0c0e]/95 px-5 py-4 backdrop-blur-2xl md:hidden">
+          <div className="mb-3 flex items-center justify-between rounded-xl border border-cyan-500/25 bg-cyan-950/30 px-3 py-2 font-mono text-xs text-zinc-400">
+            <div className="flex items-center gap-2">
+              <Clock className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+              <span className="text-zinc-300">INDORE, IN (IST):</span>
+            </div>
+            <span className="font-semibold text-cyan-300 font-mono tracking-wider">{time || "19:09:11"}</span>
+          </div>
           <ul className="space-y-2">
             {links.map((l) => (
               <li key={l.href}>
