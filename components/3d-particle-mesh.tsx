@@ -80,7 +80,7 @@ export default function InteractiveTitaniumMesh() {
 
       ctx.clearRect(0, 0, width, height)
 
-      // Dynamic cursor ambient light sheen (smooth spotlight that illuminates the titanium surface)
+      // Dynamic cursor ambient light sheen (smooth spotlight that illuminates the surface in Electric Cyan)
       if (mouse.active) {
         const spotGrad = ctx.createRadialGradient(
           mouse.x,
@@ -90,8 +90,8 @@ export default function InteractiveTitaniumMesh() {
           mouse.y,
           mouse.radius * 1.3
         )
-        spotGrad.addColorStop(0, "rgba(255, 255, 255, 0.065)")
-        spotGrad.addColorStop(0.35, "rgba(210, 210, 230, 0.02)")
+        spotGrad.addColorStop(0, "rgba(0, 242, 254, 0.08)")
+        spotGrad.addColorStop(0.35, "rgba(0, 180, 216, 0.03)")
         spotGrad.addColorStop(1, "rgba(0, 0, 0, 0)")
         ctx.fillStyle = spotGrad
         ctx.fillRect(0, 0, width, height)
@@ -138,7 +138,7 @@ export default function InteractiveTitaniumMesh() {
         }
       }
 
-      // Draw horizontal undulating titanium curves
+      // Draw horizontal undulating curves with Electric Cyber Cyan accents
       ctx.lineWidth = 1
       for (let r = 0; r < rows; r++) {
         ctx.beginPath()
@@ -156,12 +156,16 @@ export default function InteractiveTitaniumMesh() {
         const lastPt = grid[r][cols - 1]
         ctx.lineTo(lastPt.x, lastPt.y)
 
-        // Highlight lines closest to cursor
+        // Highlight lines closest to cursor with Electric Cyan glow
         const midC = Math.min(cols - 1, Math.max(0, Math.floor((mouse.x / width) * cols)))
         const lineH = grid[r][midC]?.highlight || 0
-        const alpha = 0.035 + lineH * 0.2
+        const alpha = 0.035 + lineH * 0.25
 
-        ctx.strokeStyle = `rgba(245, 245, 255, ${alpha})`
+        if (lineH > 0.04) {
+          ctx.strokeStyle = `rgba(0, 242, 254, ${alpha})`
+        } else {
+          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha * 0.7})`
+        }
         ctx.stroke()
       }
 
@@ -186,9 +190,13 @@ export default function InteractiveTitaniumMesh() {
 
         const midR = Math.min(rows - 1, Math.max(0, Math.floor((mouse.y / height) * rows)))
         const colH = grid[midR]?.[c]?.highlight || 0
-        const alpha = 0.02 + colH * 0.15
+        const alpha = 0.02 + colH * 0.18
 
-        ctx.strokeStyle = `rgba(220, 220, 245, ${alpha})`
+        if (colH > 0.04) {
+          ctx.strokeStyle = `rgba(0, 242, 254, ${alpha})`
+        } else {
+          ctx.strokeStyle = `rgba(125, 211, 252, ${alpha * 0.5})`
+        }
         ctx.stroke()
       }
 

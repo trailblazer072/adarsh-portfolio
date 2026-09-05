@@ -85,9 +85,9 @@ export default function Skills() {
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 w-fit">
-            <Cpu className="h-3.5 w-3.5 text-zinc-300" />
-            <span className="font-mono text-[10px] font-semibold tracking-wider text-zinc-300 uppercase">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1 w-fit">
+            <Cpu className="h-3.5 w-3.5 text-cyan-400" />
+            <span className="font-mono text-[10px] font-semibold tracking-wider text-cyan-300 uppercase">
               TECHNICAL COMPETENCIES
             </span>
           </div>
@@ -113,18 +113,18 @@ export default function Skills() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
                 onMouseEnter={() => playHoverTick()}
-                className="group rounded-3xl border border-white/15 bg-[#121216]/80 p-6 shadow-xl backdrop-blur-2xl transition-all duration-200 hover:border-white/30"
+                className="group rounded-3xl border border-white/15 bg-[#0d121e]/85 p-6 shadow-xl backdrop-blur-2xl transition-all duration-200 hover:border-cyan-500/35"
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 border-b border-white/10 pb-4 mb-5">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-white shadow-inner">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-500/30 bg-cyan-950/40 text-cyan-400 shadow-inner">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-base tracking-tight text-white">
+                    <h3 className="font-bold text-base tracking-tight text-white group-hover:text-cyan-200 transition-colors">
                       {cat.title}
                     </h3>
-                    <span className="font-mono text-[10px] text-zinc-400">
+                    <span className="font-mono text-[10px] text-cyan-400/80">
                       PRODUCTION STACK
                     </span>
                   </div>
@@ -136,13 +136,13 @@ export default function Skills() {
                     <div key={s.name} className="flex flex-col gap-1.5">
                       <div className="flex items-center justify-between font-mono text-xs">
                         <span className="font-medium text-zinc-200">{s.name}</span>
-                        <span className="text-[10px] text-zinc-400">{s.level}%</span>
+                        <span className="text-[10px] text-cyan-300 font-semibold">{s.level}%</span>
                       </div>
 
                       {/* Progress bar */}
                       <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-zinc-400 to-white transition-all duration-500"
+                          className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-cyan-300 shadow-[0_0_8px_rgba(0,242,254,0.4)] transition-all duration-500"
                           style={{ width: `${s.level}%` }}
                         />
                       </div>

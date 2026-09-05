@@ -27,27 +27,27 @@ export default function Navbar() {
           onMouseEnter={() => playHoverTick()}
           className="group flex items-center gap-3 transition-opacity hover:opacity-90"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/20 bg-gradient-to-b from-[#2c2c2e] to-[#141416] font-mono text-sm font-bold text-white shadow-md transition-transform group-hover:scale-105">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-500/30 bg-gradient-to-b from-[#092336] to-[#0a121f] font-mono text-sm font-bold text-cyan-200 shadow-[0_0_12px_rgba(0,242,254,0.2)] transition-transform group-hover:scale-105">
             AR
           </div>
           <div className="hidden sm:flex flex-col">
             <span className="font-mono text-xs font-bold tracking-wider text-white">
               ADARSH RAGHUWANSHI
             </span>
-            <span className="font-mono text-[10px] text-zinc-400">
+            <span className="font-mono text-[10px] text-cyan-400/80">
               SOFTWARE ENGINEER // 2026
             </span>
           </div>
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/[0.08] bg-[#141418]/60 p-1.5 shadow-lg backdrop-blur-xl">
+        <nav className="hidden md:flex items-center gap-1 rounded-full border border-cyan-500/20 bg-[#090e1a]/80 p-1.5 shadow-lg backdrop-blur-xl">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onMouseEnter={() => playHoverTick()}
-              className="rounded-full px-4 py-1.5 font-mono text-xs font-medium text-zinc-400 transition-all hover:bg-white/10 hover:text-white"
+              className="rounded-full px-4 py-1.5 font-mono text-xs font-medium text-zinc-300 transition-all hover:bg-cyan-950/50 hover:text-cyan-200"
             >
               {l.label}
             </a>

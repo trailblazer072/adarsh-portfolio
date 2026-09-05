@@ -13,9 +13,9 @@ export default function About() {
       <div className="mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 w-fit">
-            <Compass className="h-3.5 w-3.5 text-zinc-300" />
-            <span className="font-mono text-[10px] font-semibold tracking-wider text-zinc-300 uppercase">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1 w-fit">
+            <Compass className="h-3.5 w-3.5 text-cyan-400" />
+            <span className="font-mono text-[10px] font-semibold tracking-wider text-cyan-300 uppercase">
               ENGINEERING PHILOSOPHY
             </span>
           </div>
@@ -29,13 +29,13 @@ export default function About() {
         </div>
 
         {/* Narrative Glass Card */}
-        <div className="rounded-3xl border border-white/15 bg-[#121216]/80 p-6 sm:p-10 shadow-2xl backdrop-blur-2xl">
+        <div className="rounded-3xl border border-white/15 bg-[#0d121e]/85 p-6 sm:p-10 shadow-2xl backdrop-blur-2xl">
           <p className="text-base sm:text-xl font-normal leading-relaxed text-zinc-200">
             I am a Software Engineer and Computer Science undergraduate at{" "}
             <strong className="text-white font-semibold">SGSITS Indore</strong> (2022–2026) who bridges distributed backend
             engineering with product strategy. From architecting enterprise systems and integrations at{" "}
-            <strong className="text-white font-semibold">HotWax Commerce</strong> to scaling{" "}
-            <strong className="text-white font-semibold">Beiyo to a $1M valuation</strong>, my focus is building resilient,
+            <strong className="text-cyan-300 font-semibold">HotWax Commerce</strong> to scaling{" "}
+            <strong className="text-cyan-300 font-semibold">Beiyo to a $1M valuation</strong>, my focus is building resilient,
             high-throughput architectures that solve mission-critical operational challenges.
           </p>
 
@@ -43,15 +43,15 @@ export default function About() {
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
             <motion.div
               onMouseEnter={() => playHoverTick()}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl"
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl transition-all duration-200 hover:border-cyan-500/35 hover:bg-cyan-950/15"
             >
               <div className="flex items-center gap-2.5 mb-3">
-                <GraduationCap className="h-4 w-4 text-white" />
+                <GraduationCap className="h-4 w-4 text-cyan-400" />
                 <h3 className="font-mono text-xs font-bold text-white uppercase tracking-wider">
                   Education &amp; Roots
                 </h3>
               </div>
-              <p className="text-sm text-zinc-300 leading-relaxed font-mono">
+              <p className="text-sm text-cyan-200 leading-relaxed font-mono">
                 B.Tech in Computer Science
               </p>
               <p className="text-xs text-zinc-400 font-mono mt-1">
@@ -61,15 +61,15 @@ export default function About() {
 
             <motion.div
               onMouseEnter={() => playHoverTick()}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl"
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl transition-all duration-200 hover:border-cyan-500/35 hover:bg-cyan-950/15"
             >
               <div className="flex items-center gap-2.5 mb-3">
-                <Lightbulb className="h-4 w-4 text-white" />
+                <Lightbulb className="h-4 w-4 text-cyan-400" />
                 <h3 className="font-mono text-xs font-bold text-white uppercase tracking-wider">
                   Coding Philosophy
                 </h3>
               </div>
-              <p className="text-sm text-zinc-300 leading-relaxed font-mono">
+              <p className="text-sm text-cyan-200 leading-relaxed font-mono">
                 Make it work ➔ make it right ➔ make it fast ➔ make it beautiful.
               </p>
               <p className="text-xs text-zinc-400 font-mono mt-1">
@@ -79,15 +79,15 @@ export default function About() {
 
             <motion.div
               onMouseEnter={() => playHoverTick()}
-              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl"
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl transition-all duration-200 hover:border-cyan-500/35 hover:bg-cyan-950/15"
             >
               <div className="flex items-center gap-2.5 mb-3">
-                <Award className="h-4 w-4 text-white" />
+                <Award className="h-4 w-4 text-cyan-400" />
                 <h3 className="font-mono text-xs font-bold text-white uppercase tracking-wider">
                   Core Passions
                 </h3>
               </div>
-              <p className="text-sm text-zinc-300 leading-relaxed font-mono">
+              <p className="text-sm text-cyan-200 leading-relaxed font-mono">
                 Distributed Systems &amp; Real-Time
               </p>
               <p className="text-xs text-zinc-400 font-mono mt-1">

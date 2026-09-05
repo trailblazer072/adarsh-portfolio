@@ -29,9 +29,9 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Direct Outreach Console */}
           <div className="lg:col-span-6 flex flex-col gap-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 w-fit">
-              <Mail className="h-3.5 w-3.5 text-zinc-300" />
-              <span className="font-mono text-[10px] font-semibold tracking-wider text-zinc-300 uppercase">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1 w-fit">
+              <Mail className="h-3.5 w-3.5 text-cyan-400" />
+              <span className="font-mono text-[10px] font-semibold tracking-wider text-cyan-300 uppercase">
                 INITIATE CONTACT
               </span>
             </div>
@@ -45,8 +45,8 @@ export default function Contact() {
             </p>
 
             {/* Quick 1-Click Copy Email Console */}
-            <div className="rounded-2xl border border-white/15 bg-[#121216]/90 p-5 backdrop-blur-2xl">
-              <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider">
+            <div className="rounded-2xl border border-cyan-500/25 bg-[#090d18]/90 p-5 backdrop-blur-2xl">
+              <span className="font-mono text-[11px] text-cyan-400/80 uppercase tracking-wider">
                 Direct Electronic Mail
               </span>
               <div className="mt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -56,9 +56,9 @@ export default function Contact() {
                 <button
                   onClick={copyEmail}
                   onMouseEnter={() => playHoverTick()}
-                  className="flex items-center justify-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-xs font-medium text-white transition-all hover:bg-white hover:text-black w-fit"
+                  className="flex items-center justify-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-950/40 px-3 py-1.5 font-mono text-xs font-medium text-cyan-200 transition-all hover:border-cyan-400 hover:bg-cyan-900/50 hover:text-white w-fit cursor-pointer"
                 >
-                  {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                  {copied ? <Check className="h-3.5 w-3.5 text-cyan-400" /> : <Copy className="h-3.5 w-3.5" />}
                   <span>{copied ? "COPIED" : "COPY"}</span>
                 </button>
               </div>
@@ -71,13 +71,13 @@ export default function Contact() {
                 target="_blank"
                 rel="noreferrer"
                 onMouseEnter={() => playHoverTick()}
-                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/30 hover:bg-white/5"
+                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-cyan-500/35 hover:bg-cyan-950/20"
               >
                 <div className="flex items-center gap-2.5">
-                  <Linkedin className="h-4 w-4 text-zinc-300" />
-                  <span className="font-mono text-xs font-semibold text-white">LinkedIn</span>
+                  <Linkedin className="h-4 w-4 text-cyan-400" />
+                  <span className="font-mono text-xs font-semibold text-white group-hover:text-cyan-200 transition-colors">LinkedIn</span>
                 </div>
-                <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyan-300" />
               </a>
 
               <a
@@ -85,25 +85,25 @@ export default function Contact() {
                 target="_blank"
                 rel="noreferrer"
                 onMouseEnter={() => playHoverTick()}
-                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/30 hover:bg-white/5"
+                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-cyan-500/35 hover:bg-cyan-950/20"
               >
                 <div className="flex items-center gap-2.5">
-                  <Github className="h-4 w-4 text-zinc-300" />
-                  <span className="font-mono text-xs font-semibold text-white">GitHub</span>
+                  <Github className="h-4 w-4 text-cyan-400" />
+                  <span className="font-mono text-xs font-semibold text-white group-hover:text-cyan-200 transition-colors">GitHub</span>
                 </div>
-                <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyan-300" />
               </a>
 
               <a
                 href="tel:+918823008688"
                 onMouseEnter={() => playHoverTick()}
-                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/30 hover:bg-white/5"
+                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-cyan-500/35 hover:bg-cyan-950/20"
               >
                 <div className="flex items-center gap-2.5">
-                  <Phone className="h-4 w-4 text-zinc-300" />
-                  <span className="font-mono text-xs font-semibold text-white">+91-8823008688</span>
+                  <Phone className="h-4 w-4 text-cyan-400" />
+                  <span className="font-mono text-xs font-semibold text-white group-hover:text-cyan-200 transition-colors">+91-8823008688</span>
                 </div>
-                <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyan-300" />
               </a>
 
               <div className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4">
@@ -117,13 +117,13 @@ export default function Contact() {
           <div className="lg:col-span-6">
             <form
               onSubmit={handleSubmit}
-              className="rounded-3xl border border-white/15 bg-[#121216]/90 p-6 sm:p-8 shadow-2xl backdrop-blur-3xl space-y-5"
+              className="rounded-3xl border border-cyan-500/25 bg-[#090d18]/90 p-6 sm:p-8 shadow-2xl backdrop-blur-3xl space-y-5"
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="font-mono text-xs font-bold text-white uppercase tracking-wider">
                   TRANSMIT MESSAGE
                 </span>
-                <span className="font-mono text-[10px] text-zinc-400">
+                <span className="font-mono text-[10px] text-cyan-400/80">
                   PROTOCOL: HTTPS_SECURE
                 </span>
               </div>
@@ -137,7 +137,7 @@ export default function Contact() {
                   type="text"
                   required
                   placeholder="Satya Nadella / YC Founder"
-                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/40"
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -150,7 +150,7 @@ export default function Contact() {
                   type="email"
                   required
                   placeholder="contact@company.com"
-                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/40"
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40"
                 />
               </div>
 
@@ -163,18 +163,18 @@ export default function Contact() {
                   required
                   rows={4}
                   placeholder="Tell me about your distributed pipeline, product idea, or opportunity..."
-                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/40 resize-none"
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40 resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 onMouseEnter={() => playHoverTick()}
-                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3.5 font-mono text-xs font-bold text-black shadow-lg transition-all hover:bg-zinc-200 active:scale-98"
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-200 py-3.5 font-mono text-xs font-bold text-black shadow-[0_0_22px_rgba(0,242,254,0.35)] transition-all hover:shadow-[0_0_32px_rgba(0,242,254,0.5)] active:scale-98 cursor-pointer"
               >
                 {submitted ? (
                   <>
-                    <Check className="h-4 w-4 text-emerald-600" />
+                    <Check className="h-4 w-4 text-black" />
                     <span>TRANSMISSION CONFIRMED!</span>
                   </>
                 ) : (

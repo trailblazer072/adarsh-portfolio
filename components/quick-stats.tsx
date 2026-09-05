@@ -9,10 +9,10 @@ export default function QuickStatsBox() {
   const { currentPersona, setPersonaById, playHoverTick } = useSound()
 
   return (
-    <div className="w-full max-w-[420px] rounded-2xl border-2 border-white/15 bg-[#141418]/90 p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl transition-all duration-300 hover:border-white/25">
+    <div className="w-full max-w-[420px] rounded-2xl border-2 border-cyan-500/25 bg-[#090d18]/90 p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl transition-all duration-300 hover:border-cyan-400/40">
       {/* Header with Active Avatar and 3s Auto-Cycle Animation */}
       <div className="flex items-center gap-3 sm:gap-3.5 border-b border-white/10 pb-3.5">
-        <div className="relative flex h-10 w-10 sm:h-11 sm:w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-black shadow-inner">
+        <div className="relative flex h-10 w-10 sm:h-11 sm:w-11 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-cyan-500/30 bg-black shadow-inner">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentPersona.id}
@@ -40,7 +40,7 @@ export default function QuickStatsBox() {
             <h4 className="font-mono text-xs font-bold tracking-wider text-white uppercase truncate">
               ADARSH RAGHUWANSHI
             </h4>
-            <span className="font-mono text-[9px] font-semibold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-1.5 py-0.5 rounded flex-shrink-0">
+            <span className="font-mono text-[9px] font-semibold text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 px-1.5 py-0.5 rounded flex-shrink-0">
               VERIFIED
             </span>
           </div>
@@ -52,7 +52,7 @@ export default function QuickStatsBox() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="font-mono text-[10px] sm:text-[11px] text-zinc-400 truncate"
+                className="font-mono text-[10px] sm:text-[11px] text-cyan-400/80 truncate"
               >
                 Engineer Dossier // {currentPersona.statsTag}
               </motion.p>
@@ -69,11 +69,11 @@ export default function QuickStatsBox() {
         </div>
         <div className="flex items-center justify-between gap-2">
           <span className="text-zinc-400 flex-shrink-0">Startup Scaled</span>
-          <span className="font-semibold text-white text-right truncate">$1M+ Valuation (Beiyo)</span>
+          <span className="font-semibold text-cyan-300 text-right truncate">$1M+ Valuation (Beiyo)</span>
         </div>
         <div className="flex items-center justify-between gap-2">
           <span className="text-zinc-400 flex-shrink-0">Collaborative Sync</span>
-          <span className="font-medium text-zinc-100 text-right truncate">&lt; 15ms (Shapify)</span>
+          <span className="font-medium text-cyan-300 text-right truncate">&lt; 15ms (Shapify)</span>
         </div>
         <div className="flex items-center justify-between gap-2">
           <span className="text-zinc-400 flex-shrink-0">Education</span>
@@ -87,7 +87,7 @@ export default function QuickStatsBox() {
           <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-400">
             Auto-Cycling (3s):
           </span>
-          <span className="font-mono text-[10px] text-zinc-300 font-semibold truncate max-w-[200px]">
+          <span className="font-mono text-[10px] text-cyan-300 font-semibold truncate max-w-[200px]">
             {currentPersona.name}
           </span>
         </div>
@@ -102,8 +102,8 @@ export default function QuickStatsBox() {
                 onMouseEnter={() => playHoverTick()}
                 className={`relative flex flex-col items-center gap-1 rounded-lg border p-1.5 overflow-hidden transition-all duration-200 ${
                   isActive
-                    ? "border-white bg-white/15 shadow-[0_0_14px_rgba(255,255,255,0.22)] scale-[1.03]"
-                    : "border-white/10 bg-white/[0.03] hover:border-white/30 hover:bg-white/[0.08]"
+                    ? "border-cyan-400 bg-cyan-950/50 shadow-[0_0_14px_rgba(0,242,254,0.35)] scale-[1.03]"
+                    : "border-white/10 bg-white/[0.03] hover:border-cyan-500/30 hover:bg-cyan-950/20"
                 }`}
                 title={p.label}
               >
@@ -117,7 +117,7 @@ export default function QuickStatsBox() {
                     style={{ imageRendering: "pixelated" }}
                   />
                 </div>
-                <span className="font-mono text-[9px] text-zinc-300 truncate max-w-full">
+                <span className={`font-mono text-[9px] truncate max-w-full ${isActive ? "text-cyan-200 font-bold" : "text-zinc-300"}`}>
                   {p.id.toUpperCase()}
                 </span>
 
@@ -128,7 +128,7 @@ export default function QuickStatsBox() {
                     initial={{ width: "0%" }}
                     animate={{ width: "100%" }}
                     transition={{ duration: 3, ease: "linear" }}
-                    className="absolute bottom-0 left-0 h-[2px] bg-white rounded-full"
+                    className="absolute bottom-0 left-0 h-[2px] bg-cyan-400 shadow-[0_0_8px_#00f2fe] rounded-full"
                   />
                 )}
               </button>

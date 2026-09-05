@@ -24,10 +24,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 w-fit backdrop-blur-md"
+              className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-4 py-1.5 w-fit backdrop-blur-md"
             >
-              <Sparkles className="h-3.5 w-3.5 text-zinc-300" />
-              <span className="font-mono text-[11px] font-semibold tracking-wider text-zinc-300 uppercase">
+              <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+              <span className="font-mono text-[11px] font-semibold tracking-wider text-cyan-300 uppercase">
                 FULL-STACK & DISTRIBUTED SYSTEMS
               </span>
             </motion.div>
@@ -40,7 +40,7 @@ export default function Hero() {
             >
               <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
                 <span className="text-white">ARCHITECTING</span><br />
-                <span className="bg-gradient-to-b from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white via-cyan-100 to-cyan-400 bg-clip-text text-transparent">
                   SYSTEMS WITH RIGOR.
                 </span>
               </h1>
@@ -60,8 +60,8 @@ export default function Hero() {
             </motion.p>
 
             {/* Active Persona Quote Strip with smooth 3s transition */}
-            <div className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-mono text-zinc-300 w-full max-w-xl shadow-lg backdrop-blur-md overflow-hidden">
-              <span className="h-2 w-2 flex-shrink-0 rounded-full bg-white shadow-[0_0_8px_#ffffff] animate-pulse" />
+            <div className="flex items-center gap-2.5 rounded-xl border border-cyan-500/25 bg-[#0a101d]/60 px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-mono text-zinc-300 w-full max-w-xl shadow-lg backdrop-blur-md overflow-hidden">
+              <span className="h-2 w-2 flex-shrink-0 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f2fe] animate-pulse" />
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentPersona.id}
@@ -71,7 +71,7 @@ export default function Hero() {
                   transition={{ duration: 0.35, ease: "easeOut" }}
                   className="flex items-center gap-2 min-w-0 flex-1 overflow-hidden"
                 >
-                  <span className="text-white font-bold tracking-wider flex-shrink-0 text-[11px] sm:text-xs">
+                  <span className="text-cyan-300 font-bold tracking-wider flex-shrink-0 text-[11px] sm:text-xs">
                     {currentPersona.label}:
                   </span>
                   <span className="italic text-zinc-300 truncate text-[11px] sm:text-xs">
@@ -102,7 +102,7 @@ export default function Hero() {
                 <a
                   href="#projects"
                   onMouseEnter={() => playHoverTick()}
-                  className="group flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3 font-mono text-xs font-bold text-black shadow-[0_4px_24px_rgba(255,255,255,0.25)] transition-all hover:bg-zinc-200 hover:scale-105 active:scale-95 text-center"
+                  className="group flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-200 px-6 py-3 font-mono text-xs font-bold text-black shadow-[0_0_24px_rgba(0,242,254,0.35)] transition-all hover:shadow-[0_0_34px_rgba(0,242,254,0.5)] hover:scale-105 active:scale-95 text-center"
                 >
                   <span>EXPLORE 3D SYSTEMS</span>
                   <ArrowDown className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
@@ -113,9 +113,9 @@ export default function Hero() {
                 <a
                   href="#experience"
                   onMouseEnter={() => playHoverTick()}
-                  className="flex items-center justify-center gap-2.5 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 font-mono text-xs font-medium text-zinc-200 backdrop-blur-xl transition-all hover:border-white/30 hover:bg-white/10 hover:text-white text-center"
+                  className="flex items-center justify-center gap-2.5 rounded-full border border-cyan-500/25 bg-cyan-950/15 px-6 py-3 font-mono text-xs font-medium text-cyan-200 backdrop-blur-xl transition-all hover:border-cyan-400/40 hover:bg-cyan-900/30 hover:text-white text-center"
                 >
-                  <FileCode className="h-3.5 w-3.5 text-zinc-400" />
+                  <FileCode className="h-3.5 w-3.5 text-cyan-400" />
                   <span>EXPERIENCE &amp; CODE</span>
                 </a>
               </Magnetic>

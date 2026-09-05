@@ -52,36 +52,36 @@ export default function PerspectiveCard() {
     >
       {/* Ambient background aura behind card */}
       <div
-        className="pointer-events-none absolute -inset-6 rounded-full opacity-35 blur-3xl transition-opacity duration-500"
+        className="pointer-events-none absolute -inset-6 rounded-full opacity-40 blur-3xl transition-opacity duration-500"
         style={{
           background:
-            "radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(142, 142, 147, 0.05) 50%, transparent 80%)",
+            "radial-gradient(circle, rgba(0, 242, 254, 0.16) 0%, rgba(14, 165, 233, 0.06) 50%, transparent 80%)",
         }}
         aria-hidden="true"
       />
 
       {/* Floating 3D Micro-Chips in Z-Space */}
       <div
-        className="absolute -top-4 -right-3 z-30 hidden sm:flex items-center gap-2 rounded-xl border border-white/15 bg-[#141416]/90 px-3.5 py-2 shadow-2xl backdrop-blur-xl transition-transform duration-300"
+        className="absolute -top-4 -right-3 z-30 hidden sm:flex items-center gap-2 rounded-xl border border-cyan-500/25 bg-[#0b101b]/90 px-3.5 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-transform duration-300"
         style={{
           transform: `rotateY(${rotateY * 0.7}deg) rotateX(${rotateX * 0.7}deg) translateZ(60px)`,
         }}
       >
-        <span className="h-2 w-2 rounded-full bg-white shadow-[0_0_8px_#ffffff]" />
-        <span className="font-mono text-[11px] font-semibold tracking-wider text-zinc-300">
+        <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f2fe]" />
+        <span className="font-mono text-[11px] font-semibold tracking-wider text-cyan-200">
           SGSITS CS &apos;26 // INDORE
         </span>
       </div>
 
       <div
-        className="absolute -bottom-4 -left-3 z-30 hidden sm:flex items-center gap-2 rounded-xl border border-white/15 bg-[#141416]/90 px-4 py-2.5 shadow-2xl backdrop-blur-xl transition-transform duration-300"
+        className="absolute -bottom-4 -left-3 z-30 hidden sm:flex items-center gap-2 rounded-xl border border-cyan-500/25 bg-[#0b101b]/90 px-4 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-xl transition-transform duration-300"
         style={{
           transform: `rotateY(${rotateY * 0.7}deg) rotateX(${rotateX * 0.7}deg) translateZ(70px)`,
         }}
       >
-        <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
+        <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f2fe] animate-pulse" />
         <span className="font-mono text-[11px] text-zinc-300">
-          STATUS: <strong className="text-white font-semibold">{currentPersona.statsTag}</strong>
+          STATUS: <strong className="text-cyan-300 font-semibold">{currentPersona.statsTag}</strong>
         </span>
       </div>
 
@@ -91,7 +91,7 @@ export default function PerspectiveCard() {
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="group relative w-full max-w-[340px] sm:max-w-[460px] lg:max-w-[500px] cursor-pointer overflow-hidden rounded-[24px] sm:rounded-[28px] border border-white/15 bg-[#121215]/80 p-4 sm:p-5 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.95)] backdrop-blur-3xl transition-transform duration-200 ease-out"
+        className="group relative w-full max-w-[340px] sm:max-w-[460px] lg:max-w-[500px] cursor-pointer overflow-hidden rounded-[24px] sm:rounded-[28px] border border-cyan-500/25 bg-[#090d16]/85 p-4 sm:p-5 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.95)] backdrop-blur-3xl transition-transform duration-200 ease-out hover:border-cyan-400/40"
         style={{
           transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(30px)`,
           transformStyle: "preserve-3d",
@@ -101,13 +101,13 @@ export default function PerspectiveCard() {
         <div
           className="pointer-events-none absolute inset-0 z-20 transition-opacity duration-300"
           style={{
-            background: `radial-gradient(circle 350px at ${glarePos.x}% ${glarePos.y}%, rgba(255, 255, 255, ${glarePos.opacity}), transparent 70%)`,
+            background: `radial-gradient(circle 350px at ${glarePos.x}% ${glarePos.y}%, rgba(0, 242, 254, ${glarePos.opacity * 0.75}), transparent 70%)`,
           }}
           aria-hidden="true"
         />
 
         {/* Specular Edge Highlight */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent" />
 
         {/* Inner Portrait Frame */}
         <div className="relative aspect-[4/4.5] w-full overflow-hidden rounded-[18px] sm:rounded-[20px] bg-zinc-950 shadow-inner">
@@ -121,12 +121,12 @@ export default function PerspectiveCard() {
           />
 
           {/* Vignette overlay inside frame */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#121215] via-transparent to-transparent opacity-80" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#090d16] via-transparent to-transparent opacity-80" />
 
           {/* Floating badge inside portrait frame */}
-          <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 z-10 flex items-center gap-2 rounded-lg bg-black/75 px-3 py-1.5 backdrop-blur-md border border-white/10">
-            <span className="h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_6px_#ffffff] animate-pulse" />
-            <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-zinc-200">
+          <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 z-10 flex items-center gap-2 rounded-lg bg-black/80 px-3 py-1.5 backdrop-blur-md border border-cyan-500/20">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#00f2fe] animate-pulse" />
+            <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-cyan-200">
               {currentPersona.label}
             </span>
           </div>
@@ -143,9 +143,9 @@ export default function PerspectiveCard() {
                 FULL-STACK & DISTRIBUTED SYSTEMS
               </p>
             </div>
-            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-mono text-[10px] text-zinc-300">ACTIVE</span>
+            <div className="flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/40 px-2.5 py-1">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#00f2fe] animate-pulse" />
+              <span className="font-mono text-[10px] text-cyan-300 font-semibold">ACTIVE</span>
             </div>
           </div>
 
@@ -155,7 +155,7 @@ export default function PerspectiveCard() {
               (tech) => (
                 <span
                   key={tech}
-                  className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] text-zinc-300 transition-colors hover:border-white/30 hover:text-white"
+                  className="rounded-md border border-cyan-500/15 bg-cyan-950/15 px-2.5 py-1 font-mono text-[10px] text-cyan-200/80 transition-colors hover:border-cyan-400/40 hover:text-cyan-100"
                 >
                   {tech}
                 </span>

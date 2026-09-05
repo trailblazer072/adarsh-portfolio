@@ -98,9 +98,9 @@ export default function Timeline() {
       <div className="mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 w-fit">
-            <Briefcase className="h-3.5 w-3.5 text-zinc-300" />
-            <span className="font-mono text-[10px] font-semibold tracking-wider text-zinc-300 uppercase">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1 w-fit">
+            <Briefcase className="h-3.5 w-3.5 text-cyan-400" />
+            <span className="font-mono text-[10px] font-semibold tracking-wider text-cyan-300 uppercase">
               PROFESSIONAL TRAJECTORY
             </span>
           </div>
@@ -115,8 +115,8 @@ export default function Timeline() {
 
         {/* Timeline Roadmap */}
         <div className="relative space-y-8 sm:space-y-10">
-          {/* Continuous Vertical Track Line - Guaranteed dead-center through all nodes */}
-          <div className="absolute left-[15px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-white/35 via-white/15 to-transparent pointer-events-none" />
+          {/* Continuous Vertical Track Line - Guaranteed dead-center through all nodes in Electric Cyan */}
+          <div className="absolute left-[15px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-cyan-400/50 via-cyan-500/25 to-transparent pointer-events-none" />
 
           {milestones.map((m, idx) => {
             const isExpanded = expandedIndex === idx
@@ -130,7 +130,7 @@ export default function Timeline() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="relative flex items-start gap-4 sm:gap-6"
               >
-                {/* Timeline Interactive Node Glow Marker - Perfectly threaded onto the track line */}
+                {/* Timeline Interactive Node Glow Marker - Threaded onto track line in Electric Cyan */}
                 <button
                   type="button"
                   onClick={() => toggleExpand(idx)}
@@ -138,22 +138,22 @@ export default function Timeline() {
                   title={isExpanded ? "Click to collapse details" : "Click to view architecture details"}
                   className={`relative z-10 flex-shrink-0 mt-5 sm:mt-6 flex h-8 w-8 items-center justify-center rounded-full border-2 transition-all duration-300 cursor-pointer ${
                     isExpanded
-                      ? "border-white bg-white shadow-[0_0_20px_rgba(255,255,255,0.75)] scale-110"
-                      : "border-white/30 bg-[#09090b] hover:border-white hover:scale-105 shadow-[0_0_12px_rgba(0,0,0,0.9)]"
+                      ? "border-cyan-400 bg-cyan-400 shadow-[0_0_22px_rgba(0,242,254,0.75)] scale-110"
+                      : "border-cyan-500/30 bg-[#090d16] hover:border-cyan-400 hover:scale-105 shadow-[0_0_12px_rgba(0,0,0,0.9)]"
                   }`}
                 >
                   <span
                     className={`rounded-full transition-all duration-300 ${
                       isExpanded
                         ? "h-2.5 w-2.5 bg-black"
-                        : "h-2 w-2 bg-white animate-pulse"
+                        : "h-2 w-2 bg-cyan-400 shadow-[0_0_6px_#00f2fe] animate-pulse"
                     }`}
                   />
                 </button>
 
                 {/* Milestone Glassmorphic Card */}
                 <div
-                  className="flex-1 min-w-0 rounded-3xl border border-white/15 bg-[#121216]/80 p-5 sm:p-8 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.8)] backdrop-blur-2xl transition-all duration-200 hover:border-white/30"
+                  className="flex-1 min-w-0 rounded-3xl border border-white/15 bg-[#0d121e]/85 p-5 sm:p-8 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.8)] backdrop-blur-2xl transition-all duration-200 hover:border-cyan-500/35"
                 >
                   {/* Card Header (Clickable to toggle) */}
                   <div
@@ -162,11 +162,11 @@ export default function Timeline() {
                   >
                     <div>
                       <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                        <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-zinc-200 transition-colors">
+                        <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-cyan-200 transition-colors">
                           {m.company}
                         </h3>
                         {m.badge && (
-                          <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-zinc-200">
+                          <span className="rounded-full border border-cyan-500/30 bg-cyan-950/40 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-cyan-300">
                             {m.badge}
                           </span>
                         )}
@@ -177,7 +177,7 @@ export default function Timeline() {
                     </div>
 
                     <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
-                      <Calendar className="h-3.5 w-3.5" />
+                      <Calendar className="h-3.5 w-3.5 text-cyan-400" />
                       <span>{m.period}</span>
                     </div>
                   </div>
@@ -192,9 +192,9 @@ export default function Timeline() {
                     {m.metrics.map((metric) => (
                       <div
                         key={metric.label}
-                        className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-2.5 sm:p-3 text-center"
+                        className="rounded-xl border border-cyan-500/15 bg-cyan-950/20 p-2.5 sm:p-3 text-center"
                       >
-                        <div className="font-mono text-sm sm:text-lg font-bold text-white">
+                        <div className="font-mono text-sm sm:text-lg font-bold text-cyan-200">
                           {metric.value}
                         </div>
                         <div className="mt-0.5 font-mono text-[9px] sm:text-[10px] text-zinc-400 uppercase tracking-wider">
@@ -209,13 +209,13 @@ export default function Timeline() {
                     <button
                       onClick={() => toggleExpand(idx)}
                       onMouseEnter={() => playHoverTick()}
-                      className="flex items-center justify-between w-full font-mono text-xs font-semibold text-zinc-300 hover:text-white transition-colors py-1 text-left gap-2 cursor-pointer"
+                      className="flex items-center justify-between w-full font-mono text-xs font-semibold text-zinc-300 hover:text-cyan-200 transition-colors py-1 text-left gap-2 cursor-pointer"
                     >
                       <span className="flex items-center gap-2 min-w-0">
-                        <Layers className="h-3.5 w-3.5 text-zinc-400 flex-shrink-0" />
+                        <Layers className="h-3.5 w-3.5 text-cyan-400 flex-shrink-0" />
                         <span className="truncate">{isExpanded ? "COLLAPSE ARCHITECTURE DETAILS" : "VIEW ARCHITECTURE DETAILS"}</span>
                       </span>
-                      <span className="flex-shrink-0">{isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}</span>
+                      <span className="flex-shrink-0">{isExpanded ? <ChevronUp className="h-4 w-4 text-cyan-400" /> : <ChevronDown className="h-4 w-4 text-zinc-400" />}</span>
                     </button>
 
                     {isExpanded && (
@@ -228,7 +228,7 @@ export default function Timeline() {
                         <ul className="space-y-2.5">
                           {m.highlights.map((point, pIdx) => (
                             <li key={pIdx} className="flex items-start gap-3 text-sm text-zinc-300 leading-relaxed">
-                              <ShieldCheck className="h-4 w-4 text-white flex-shrink-0 mt-0.5" />
+                              <ShieldCheck className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-0.5" />
                               <span>{point}</span>
                             </li>
                           ))}
@@ -239,7 +239,7 @@ export default function Timeline() {
                           {m.skills.map((skill) => (
                             <span
                               key={skill}
-                              className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[10px] text-zinc-300"
+                              className="rounded-md border border-cyan-500/20 bg-cyan-950/20 px-2.5 py-1 font-mono text-[10px] text-cyan-200"
                             >
                               {skill}
                             </span>

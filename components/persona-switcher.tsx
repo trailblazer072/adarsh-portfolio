@@ -22,16 +22,16 @@ export default function PersonaSwitcher() {
     <div className="relative inline-flex items-center">
       {/* Speech Bubble / Quote on Persona Change */}
       {showBubble && (
-        <div className="absolute right-0 top-14 z-50 w-64 max-w-[calc(100vw-2rem)] rounded-xl border border-white/20 bg-[#18181b]/95 p-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute right-0 top-14 z-50 w-64 max-w-[calc(100vw-2rem)] rounded-xl border border-cyan-500/30 bg-[#090e18]/95 p-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="flex items-center gap-2 border-b border-white/10 pb-1.5 font-mono text-[10px] text-zinc-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-white" />
-            <span className="truncate">{currentPersona.role}</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#00f2fe]" />
+            <span className="truncate text-cyan-300">{currentPersona.role}</span>
           </div>
           <p className="mt-1.5 font-mono text-[11px] leading-relaxed text-zinc-200">
             &ldquo;{currentPersona.quote}&rdquo;
           </p>
           {/* Bubble beak */}
-          <div className="absolute -top-1.5 right-6 h-3 w-3 rotate-45 border-l border-t border-white/20 bg-[#18181b]" />
+          <div className="absolute -top-1.5 right-6 h-3 w-3 rotate-45 border-l border-t border-cyan-500/30 bg-[#090e18]" />
         </div>
       )}
 
@@ -40,7 +40,7 @@ export default function PersonaSwitcher() {
         onClick={handleClick}
         onMouseEnter={() => playHoverTick()}
         title="Click to switch persona alter-ego (auto-cycles every 3s)!"
-        className={`group relative flex items-center gap-2 sm:gap-3 rounded-xl border-2 border-white bg-white p-1 pl-2 sm:pl-3.5 shadow-[0_4px_20px_rgba(255,255,255,0.22)] transition-all duration-200 hover:scale-105 active:scale-95 ${
+        className={`group relative flex items-center gap-2 sm:gap-3 rounded-xl border-2 border-cyan-400 bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-200 p-1 pl-2 sm:pl-3.5 shadow-[0_0_20px_rgba(0,242,254,0.35)] transition-all duration-200 hover:shadow-[0_0_28px_rgba(0,242,254,0.5)] hover:scale-105 active:scale-95 ${
           isBouncing ? "scale-95" : ""
         }`}
       >

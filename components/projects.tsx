@@ -135,7 +135,7 @@ function ProjectCard({
         playCardTilt()
       }}
       onMouseLeave={handleMouseLeave}
-      className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-white/15 bg-[#121216]/90 p-5 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] backdrop-blur-2xl transition-all duration-200 hover:border-white/30"
+      className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-cyan-500/25 bg-[#0a0f1b]/90 p-5 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] backdrop-blur-2xl transition-all duration-200 hover:border-cyan-400/45"
       style={{
         transform: `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`,
         transformStyle: "preserve-3d",
@@ -145,14 +145,14 @@ function ProjectCard({
       <div
         className="pointer-events-none absolute inset-0 z-20 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(circle 300px at ${glare.x}% ${glare.y}%, rgba(255, 255, 255, ${glare.opacity}), transparent 70%)`,
+          background: `radial-gradient(circle 300px at ${glare.x}% ${glare.y}%, rgba(0, 242, 254, ${glare.opacity * 0.7}), transparent 70%)`,
         }}
         aria-hidden="true"
       />
 
       {/* Top Banner Image with Live Status Pill */}
       <div>
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[18px] border border-white/10 bg-zinc-950">
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[18px] border border-cyan-500/20 bg-zinc-950">
           <Image
             src={project.image}
             alt={project.title}
@@ -162,9 +162,9 @@ function ProjectCard({
           />
 
           {/* Status badge */}
-          <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/70 px-2.5 py-1 backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="font-mono text-[9px] font-semibold text-white uppercase tracking-wider">
+          <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-black/80 px-2.5 py-1 backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#00f2fe] animate-pulse" />
+            <span className="font-mono text-[9px] font-semibold text-cyan-300 uppercase tracking-wider">
               ONLINE
             </span>
           </div>
@@ -172,7 +172,7 @@ function ProjectCard({
 
         {/* Title & Tagline */}
         <div className="mt-5">
-          <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-zinc-100">
+          <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-cyan-200 transition-colors">
             {project.title}
           </h3>
           <p className="mt-1 font-mono text-xs text-zinc-400">
@@ -188,7 +188,7 @@ function ProjectCard({
           {project.tags.map((t) => (
             <span
               key={t}
-              className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] text-zinc-300"
+              className="rounded-md border border-cyan-500/20 bg-cyan-950/25 px-2 py-0.5 font-mono text-[10px] text-cyan-300"
             >
               {t}
             </span>
@@ -201,9 +201,9 @@ function ProjectCard({
         <button
           onClick={() => onOpenDetails(project)}
           onMouseEnter={() => playHoverTick()}
-          className="flex items-center gap-1.5 font-mono text-xs font-semibold text-zinc-300 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 font-mono text-xs font-semibold text-zinc-300 hover:text-cyan-300 transition-colors cursor-pointer"
         >
-          <Layers className="h-3.5 w-3.5 text-zinc-400" />
+          <Layers className="h-3.5 w-3.5 text-cyan-400" />
           <span>ARCHITECTURE DOCS</span>
         </button>
 
@@ -214,7 +214,7 @@ function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               onMouseEnter={() => playHoverTick()}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-zinc-300 transition-colors hover:border-white/30 hover:bg-white/10 hover:text-white"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-cyan-500/25 bg-cyan-950/30 text-cyan-200 transition-colors hover:border-cyan-400 hover:bg-cyan-900/40 hover:text-white"
               title="View GitHub Repository"
             >
               <Github className="h-4 w-4" />
@@ -226,7 +226,7 @@ function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               onMouseEnter={() => playHoverTick()}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/20 bg-white text-black transition-transform hover:scale-105"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-cyan-400 bg-gradient-to-r from-cyan-400 to-cyan-300 text-black shadow-[0_0_12px_rgba(0,242,254,0.35)] transition-transform hover:scale-105"
               title="Open Live Application"
             >
               <ExternalLink className="h-4 w-4" />
@@ -257,9 +257,9 @@ export default function Projects() {
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <div className="flex flex-col gap-3 mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 w-fit">
-            <Sparkles className="h-3.5 w-3.5 text-zinc-300" />
-            <span className="font-mono text-[10px] font-semibold tracking-wider text-zinc-300 uppercase">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1 w-fit">
+            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+            <span className="font-mono text-[10px] font-semibold tracking-wider text-cyan-300 uppercase">
               ENGINEERING LABS &amp; PRODUCTION APPS
             </span>
           </div>
@@ -290,7 +290,7 @@ export default function Projects() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeDetails}
-              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+              className="absolute inset-0 bg-black/85 backdrop-blur-md"
             />
 
             {/* Modal Dialog */}
@@ -298,31 +298,31 @@ export default function Projects() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl border border-white/20 bg-[#141418] p-5 sm:p-8 shadow-2xl backdrop-blur-3xl"
+              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl border border-cyan-500/30 bg-[#090e1a] p-5 sm:p-8 shadow-[0_0_50px_rgba(0,0,0,0.9)] backdrop-blur-3xl"
             >
               {/* Close Button */}
               <button
                 onClick={closeDetails}
                 aria-label="Close architecture details"
-                className="absolute top-4 sm:top-5 right-4 sm:right-5 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white z-10"
+                className="absolute top-4 sm:top-5 right-4 sm:right-5 flex h-8 w-8 items-center justify-center rounded-full border border-cyan-500/20 bg-cyan-950/30 text-cyan-300 transition-colors hover:bg-cyan-900/50 hover:text-white z-10 cursor-pointer"
               >
                 <X className="h-4 w-4" />
               </button>
 
               <div className="flex items-center gap-3 pr-10">
-                <Terminal className="h-5 w-5 text-zinc-300 flex-shrink-0" />
+                <Terminal className="h-5 w-5 text-cyan-400 flex-shrink-0" />
                 <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white truncate">
                   {selectedProject.title} // Dossier
                 </h3>
               </div>
-              <p className="mt-1 font-mono text-xs text-zinc-400">
+              <p className="mt-1 font-mono text-xs text-cyan-400/80">
                 {selectedProject.tagline}
               </p>
 
               {/* Architecture Sections */}
               <div className="mt-6 space-y-4 sm:space-y-5">
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-2">
+                <div className="rounded-xl border border-cyan-500/20 bg-cyan-950/20 p-4">
+                  <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-cyan-300 mb-2">
                     System Architecture &amp; Data Pipeline
                   </h4>
                   <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
@@ -330,14 +330,14 @@ export default function Projects() {
                   </p>
                 </div>
 
-                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-2">
+                <div className="rounded-xl border border-cyan-500/20 bg-cyan-950/20 p-4">
+                  <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-cyan-300 mb-2">
                     Core Technical Implementations
                   </h4>
                   <ul className="space-y-2">
                     {selectedProject.architectureDetails.keyFeatures.map((kf, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-0.5" />
                         <span>{kf}</span>
                       </li>
                     ))}
@@ -345,16 +345,16 @@ export default function Projects() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-                  <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5 sm:p-4">
-                    <h4 className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-zinc-400 mb-1.5">
+                  <div className="rounded-xl border border-cyan-500/20 bg-cyan-950/20 p-3.5 sm:p-4">
+                    <h4 className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-cyan-400/80 mb-1.5">
                       Database Model
                     </h4>
                     <p className="font-mono text-[11px] sm:text-xs text-zinc-300">
                       {selectedProject.architectureDetails.databaseSchema}
                     </p>
                   </div>
-                  <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5 sm:p-4">
-                    <h4 className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-zinc-400 mb-1.5">
+                  <div className="rounded-xl border border-cyan-500/20 bg-cyan-950/20 p-3.5 sm:p-4">
+                    <h4 className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-cyan-400/80 mb-1.5">
                       Security &amp; Authorization
                     </h4>
                     <p className="font-mono text-[11px] sm:text-xs text-zinc-300">
@@ -371,7 +371,7 @@ export default function Projects() {
                     href={selectedProject.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 font-mono text-xs font-medium text-zinc-200 transition-colors hover:bg-white/10 hover:text-white text-center"
+                    className="flex items-center justify-center gap-2 rounded-xl border border-cyan-500/25 bg-cyan-950/30 px-4 py-2.5 font-mono text-xs font-medium text-cyan-200 transition-colors hover:border-cyan-400 hover:bg-cyan-900/40 hover:text-white text-center"
                   >
                     <Github className="h-4 w-4" />
                     <span>View Code</span>
@@ -382,7 +382,7 @@ export default function Projects() {
                     href={selectedProject.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 font-mono text-xs font-bold text-black shadow-lg transition-transform hover:scale-105 text-center"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 to-cyan-300 px-4 py-2.5 font-mono text-xs font-bold text-black shadow-[0_0_16px_rgba(0,242,254,0.35)] transition-transform hover:scale-105 text-center"
                   >
                     <ExternalLink className="h-4 w-4" />
                     <span>Launch Live System</span>
