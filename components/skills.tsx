@@ -16,63 +16,63 @@ const skillCategories: SkillCategory[] = [
     title: "Core Languages",
     icon: Code,
     skills: [
-      { name: "TypeScript", level: 92, note: "Strict Typing / Next.js / Node" },
-      { name: "JavaScript (ES6+)", level: 95, note: "Async / WebSockets / Microservices" },
-      { name: "C++", level: 85, note: "DSA / Memory / LeetCode" },
-      { name: "Java", level: 82, note: "OOP / Spring Boot / Enterprise" },
-      { name: "Python", level: 80, note: "Gen-AI / Automation / APIs" },
+      { name: "TypeScript", level: 92, note: "Strict Typing / Next.js / Zero 'any' Tolerance" },
+      { name: "JavaScript (ES6+)", level: 95, note: "Async/Await / Event Loop Architecture / Microservices" },
+      { name: "C++", level: 85, note: "Algorithmic Rigor / Memory Models / Foundations" },
+      { name: "Java", level: 82, note: "Enterprise OOP / Spring Boot / JVM Concurrency" },
+      { name: "Python", level: 80, note: "Automation / Gen-AI APIs / Scripting" },
     ],
   },
   {
     title: "Backend & Distributed Systems",
     icon: Terminal,
     skills: [
-      { name: "Node.js & Express", level: 94, note: "Microservices & REST APIs" },
-      { name: "WebSockets", level: 90, note: "Real-Time Sub-15ms Synchronization" },
-      { name: "Moqui Framework", level: 88, note: "Enterprise DataManager & Groovy" },
-      { name: "Spring Boot", level: 82, note: "Enterprise Java Services" },
-      { name: "Shopify Connectors", level: 86, note: "Location & ATP Sync Logic" },
+      { name: "Node.js & Express", level: 94, note: "Non-blocking I/O & RESTful Microservices" },
+      { name: "WebSockets", level: 90, note: "Sub-15ms Broadcast & Real-Time Sync" },
+      { name: "Moqui Framework", level: 88, note: "Enterprise DataManager / Groovy / Async Jobs" },
+      { name: "Spring Boot", level: 82, note: "Enterprise Microservices & Dependency Injection" },
+      { name: "Shopify Connectors", level: 86, note: "ATP Inventory Routing & Channel Sync" },
     ],
   },
   {
     title: "Frontend & 3D Interactive",
     icon: Cpu,
     skills: [
-      { name: "Next.js 15/16", level: 95, note: "App Router / Server Components" },
-      { name: "React.js", level: 95, note: "Custom Hooks / State Machines" },
-      { name: "Three.js & WebGL", level: 85, note: "PBR Shaders / 3D Canvas / Physics" },
-      { name: "Tailwind CSS", level: 96, note: "Ultra-responsive Glassmorphism" },
-      { name: "Framer Motion", level: 92, note: "Keynote Choreography & Physics" },
+      { name: "Next.js 15/16", level: 95, note: "Server Components & App Router Performance" },
+      { name: "React.js", level: 95, note: "Custom Hooks & Resilient State Machines" },
+      { name: "Three.js & WebGL", level: 85, note: "3D Shaders & GPU-Accelerated Webcraft" },
+      { name: "Tailwind CSS", level: 96, note: "Responsive Glassmorphism & Modern Styling" },
+      { name: "Framer Motion", level: 92, note: "Apple-Grade Kinetic Physics & Gestures" },
     ],
   },
   {
     title: "Databases & ORMs",
     icon: Database,
     skills: [
-      { name: "PostgreSQL", level: 90, note: "Relational Modeling & Performance" },
-      { name: "Prisma ORM", level: 92, note: "Type-safe Schema & Migrations" },
-      { name: "MongoDB", level: 90, note: "NoSQL Clusters & Mongoose" },
-      { name: "Moqui Entity Engine", level: 85, note: "XML Data Schemas & ATP Queries" },
+      { name: "PostgreSQL", level: 90, note: "ACID Compliance & Relational Sanity" },
+      { name: "Prisma ORM", level: 92, note: "Type-Safe Schemas & Seamless Migrations" },
+      { name: "MongoDB", level: 90, note: "Document Stores & High-Throughput Clusters" },
+      { name: "Moqui Entity Engine", level: 85, note: "Enterprise XML Data Modeling & ATP Queries" },
     ],
   },
   {
     title: "Cloud, DevOps & Infrastructure",
     icon: Cloud,
     skills: [
-      { name: "Docker", level: 88, note: "Containerization & Multi-stage Builds" },
-      { name: "AWS (EC2, S3)", level: 86, note: "Pre-signed URLs & Deployments" },
-      { name: "Linux & Nginx", level: 85, note: "Reverse Proxy & Server Config" },
-      { name: "GitHub Actions & CI/CD", level: 88, note: "Automated Testing & Pipelines" },
+      { name: "Docker", level: 88, note: "Containerization & Multi-Stage Production Builds" },
+      { name: "AWS (EC2, S3)", level: 86, note: "Pre-signed URLs, IAM Security & Cloud Deployments" },
+      { name: "Linux & Nginx", level: 85, note: "Reverse Proxies, Shell Scripting & Server Tuning" },
+      { name: "GitHub Actions & CI/CD", level: 88, note: "Automated Testing & Continuous Integration" },
     ],
   },
   {
     title: "CS Fundamentals & Practice",
     icon: GitBranch,
     skills: [
-      { name: "Data Structures & Algorithms", level: 90, note: "LeetCode / Algorithmic Rigor" },
-      { name: "Scalable System Design", level: 88, note: "High Concurrency & Fault Tolerance" },
-      { name: "Unit & Integration Testing", level: 88, note: "325+ Lines Suite Deployments" },
-      { name: "Agile & Team Delivery", level: 92, note: "Cross-functional Coordination" },
+      { name: "Data Structures & Algorithms", level: 90, note: "Algorithmic Optimization & Efficiency" },
+      { name: "Scalable System Design", level: 88, note: "High Concurrency, Caching & Fault Tolerance" },
+      { name: "Unit & Integration Testing", level: 88, note: "325+ Lines Verifying System Invariants" },
+      { name: "Agile & Team Delivery", level: 92, note: "Cross-Functional Execution & Continuous Delivery" },
     ],
   },
 ]
@@ -88,7 +88,7 @@ export default function Skills() {
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1 w-fit">
             <Cpu className="h-3.5 w-3.5 text-cyan-400" />
             <span className="font-mono text-[10px] font-semibold tracking-wider text-cyan-300 uppercase">
-              TECHNICAL COMPETENCIES
+              TECHNICAL ARSENAL // PRODUCTION READY
             </span>
           </div>
 
@@ -96,7 +96,7 @@ export default function Skills() {
             Systems &amp; Architecture Stack
           </h2>
           <p className="font-mono text-sm text-zinc-400 max-w-2xl">
-            A comprehensive matrix of programming languages, distributed infrastructure, databases, and 3D web engines.
+            Languages, frameworks, and cloud infrastructure I use to solve real problems (and the battle scars earned along the way).
           </p>
         </div>
 

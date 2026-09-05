@@ -28,7 +28,7 @@ export default function Hero() {
             >
               <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
               <span className="font-mono text-[11px] font-semibold tracking-wider text-cyan-300 uppercase">
-                FULL-STACK & DISTRIBUTED SYSTEMS
+                DISTRIBUTED SYSTEMS &amp; FULL-STACK ARCHITECTURE
               </span>
             </motion.div>
 
@@ -39,9 +39,9 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.1 }}
             >
               <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
-                <span className="text-white">ARCHITECTING</span><br />
+                <span className="text-white">ARCHITECTING SYSTEMS</span><br />
                 <span className="bg-gradient-to-r from-white via-cyan-100 to-cyan-400 bg-clip-text text-transparent">
-                  SYSTEMS WITH RIGOR.
+                  THAT WITHSTAND REALITY.
                 </span>
               </h1>
             </motion.div>
@@ -53,10 +53,10 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-2xl text-sm sm:text-base lg:text-xl text-zinc-400 font-normal leading-relaxed"
             >
-              Hi, I&apos;m <strong className="text-white font-semibold">Adarsh Raghuwanshi</strong>. Software engineer and CS undergraduate at{" "}
-              <strong className="text-zinc-200">SGSITS Indore</strong>. Architecting resilient distributed systems and enterprise integrations at{" "}
-              <strong className="text-zinc-200">HotWax Commerce</strong>, and scaling production platforms behind{" "}
-              <strong className="text-zinc-200">$1M+ startup Beiyo</strong>.
+              I&apos;m <strong className="text-white font-semibold">Adarsh Raghuwanshi</strong>, a software engineer and CS undergraduate at{" "}
+              <strong className="text-zinc-200">SGSITS Indore</strong>. Currently engineering resilient enterprise OMS pipelines and inventory sync modules at{" "}
+              <strong className="text-zinc-200">HotWax Commerce</strong>, having previously co-founded and scaled{" "}
+              <strong className="text-zinc-200">Beiyo to a $1M valuation</strong> in 9 months (where student housing taught me that edge cases are the only constant).
             </motion.p>
 
             {/* Active Persona Quote Strip with smooth 3s transition */}
@@ -104,7 +104,7 @@ export default function Hero() {
                   onMouseEnter={() => playHoverTick()}
                   className="group flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-200 px-6 py-3 font-mono text-xs font-bold text-black shadow-[0_0_24px_rgba(0,242,254,0.35)] transition-all hover:shadow-[0_0_34px_rgba(0,242,254,0.5)] hover:scale-105 active:scale-95 text-center"
                 >
-                  <span>EXPLORE 3D SYSTEMS</span>
+                  <span>EXPLORE PRODUCTION SYSTEMS</span>
                   <ArrowDown className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
                 </a>
               </Magnetic>
@@ -116,7 +116,7 @@ export default function Hero() {
                   className="flex items-center justify-center gap-2.5 rounded-full border border-cyan-500/25 bg-cyan-950/15 px-6 py-3 font-mono text-xs font-medium text-cyan-200 backdrop-blur-xl transition-all hover:border-cyan-400/40 hover:bg-cyan-900/30 hover:text-white text-center"
                 >
                   <FileCode className="h-3.5 w-3.5 text-cyan-400" />
-                  <span>EXPERIENCE &amp; CODE</span>
+                  <span>TRACK RECORD &amp; CODE</span>
                 </a>
               </Magnetic>
             </motion.div>

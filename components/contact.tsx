@@ -25,21 +25,24 @@ export default function Contact() {
     setStatus("submitting")
     setStatusMessage("")
 
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 3500)
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        signal: controller.signal,
       })
+      clearTimeout(timeoutId)
 
-      const data = await res.json()
+      const data = await res.json().catch(() => null)
 
-      if (res.ok && data.success) {
+      if (res.ok && data?.success) {
         setStatus("success")
         setStatusMessage(
-          data.activationNeeded
-            ? "Activation required: One-time activation link dispatched to adarshraghuwanshi072@gmail.com! Please check your Gmail to confirm."
-            : "Transmission confirmed! Your dispatch has been delivered to Adarsh's inbox."
+          data.message || "Transmission confirmed! Your dispatch has been securely received and recorded for Adarsh."
         )
         setFormData({ name: "", email: "", message: "" })
         playSuccessChime()
@@ -49,12 +52,13 @@ export default function Contact() {
         }, 8000)
       } else {
         setStatus("error")
-        setStatusMessage(data.error || "Failed to transmit dispatch. Gateway returned an error.")
+        setStatusMessage(data?.error || "Failed to transmit dispatch. Gateway returned an error.")
       }
-    } catch (err) {
+    } catch (err: unknown) {
+      clearTimeout(timeoutId)
       console.error("Submission error:", err)
       setStatus("error")
-      setStatusMessage("Network error: Could not reach transmission gateway.")
+      setStatusMessage("Transmission timeout. You can click below to dispatch directly via your native mail client.")
     }
   }
 
@@ -67,16 +71,16 @@ export default function Contact() {
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1 w-fit">
               <Mail className="h-3.5 w-3.5 text-cyan-400" />
               <span className="font-mono text-[10px] font-semibold tracking-wider text-cyan-300 uppercase">
-                INITIATE CONTACT
+                DIRECT COMMUNICATION // INITIATE CONTACT
               </span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-              Let&apos;s Build Systems That Matter.
+              Let&apos;s Build Something Exceptional.
             </h2>
 
             <p className="text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">
-              Whether you have an enterprise integration to architect, high-concurrency systems to scale, or an impactful engineering role to fill — my inbox is open.
+              Whether you&apos;re looking to architect a resilient distributed system, untangle an enterprise integration, scale a high-impact product, or discuss an engineering opportunity — my inbox is open. I value thoughtful problems and prompt communication.
             </p>
 
             {/* Quick 1-Click Copy Email Console */}
@@ -94,7 +98,7 @@ export default function Contact() {
                   className="flex items-center justify-center gap-1.5 rounded-lg border border-cyan-500/30 bg-cyan-950/40 px-3 py-1.5 font-mono text-xs font-medium text-cyan-200 transition-all hover:border-cyan-400 hover:bg-cyan-900/50 hover:text-white w-fit cursor-pointer"
                 >
                   {copied ? <Check className="h-3.5 w-3.5 text-cyan-400" /> : <Copy className="h-3.5 w-3.5" />}
-                  <span>{copied ? "COPIED" : "COPY"}</span>
+                  <span>{copied ? "COPIED TO CLIPBOARD" : "COPY EMAIL"}</span>
                 </button>
               </div>
             </div>
@@ -156,7 +160,7 @@ export default function Contact() {
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <span className="font-mono text-xs font-bold text-white uppercase tracking-wider">
-                  TRANSMIT MESSAGE
+                  SEND DIRECT MESSAGE
                 </span>
                 <span className="font-mono text-[10px] text-cyan-400/80">
                   PROTOCOL: HTTPS_SECURE
@@ -165,7 +169,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="contact-name" className="block font-mono text-xs text-zinc-300 mb-2">
-                  NAME / ORGANIZATION
+                  NAME &amp; ORGANIZATION
                 </label>
                 <input
                   id="contact-name"
@@ -174,14 +178,14 @@ export default function Contact() {
                   disabled={status === "submitting"}
                   value={formData.name}
                   onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                  placeholder="Satya Nadella / YC Founder"
+                  placeholder="e.g., Satya Nadella / Engineering Lead / Founder"
                   className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40 disabled:opacity-50"
                 />
               </div>
 
               <div>
                 <label htmlFor="contact-email" className="block font-mono text-xs text-zinc-300 mb-2">
-                  RETURN ELECTRONIC MAIL
+                  RETURN EMAIL ADDRESS
                 </label>
                 <input
                   id="contact-email"
@@ -190,14 +194,14 @@ export default function Contact() {
                   disabled={status === "submitting"}
                   value={formData.email}
                   onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                  placeholder="contact@company.com"
+                  placeholder="name@company.com"
                   className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40 disabled:opacity-50"
                 />
               </div>
 
               <div>
                 <label htmlFor="contact-message" className="block font-mono text-xs text-zinc-300 mb-2">
-                  PROJECT SPECIFICATION OR MESSAGE
+                  PROJECT DETAILS OR MESSAGE
                 </label>
                 <textarea
                   id="contact-message"
@@ -206,7 +210,7 @@ export default function Contact() {
                   disabled={status === "submitting"}
                   value={formData.message}
                   onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
-                  placeholder="Tell me about your distributed pipeline, product idea, or opportunity..."
+                  placeholder="Tell me about your architecture, product vision, or the engineering challenge you're solving..."
                   className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40 resize-none disabled:opacity-50"
                 />
               </div>
@@ -220,17 +224,17 @@ export default function Contact() {
                 {status === "submitting" ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin text-black" />
-                    <span>TRANSMITTING DISPATCH...</span>
+                    <span>TRANSMITTING...</span>
                   </>
                 ) : status === "success" ? (
                   <>
                     <Check className="h-4 w-4 text-black" />
-                    <span>TRANSMISSION CONFIRMED!</span>
+                    <span>MESSAGE TRANSMITTED!</span>
                   </>
                 ) : (
                   <>
                     <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    <span>TRANSMIT DISPATCH</span>
+                    <span>SEND MESSAGE</span>
                   </>
                 )}
               </button>

@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
           <div>
             <p className="font-mono text-xs text-zinc-300">
-              © {new Date().getFullYear()} Adarsh Raghuwanshi. All rights reserved.
+              © {new Date().getFullYear()} Adarsh Raghuwanshi. Engineered with clean architecture, dark roast coffee, and modern web standards.
             </p>
             <p className="font-mono text-[10px] text-zinc-500">
               Active Persona: <span className="text-cyan-400 font-semibold">{currentPersona.label}</span>

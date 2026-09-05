@@ -25,21 +25,21 @@ interface Project {
 const projects: Project[] = [
   {
     title: "FileVault",
-    tagline: "Secure Cloud Storage & AI Summarization",
+    tagline: "Secure Cloud Storage & Gen-AI Digest",
     description:
-      "Enterprise-grade MERN-based secure cloud storage platform with time-limited AWS S3 pre-signed URLs, JWT authorization, role-based access control, and an integrated AI PDF summarizer.",
+      "Enterprise-grade MERN cloud storage platform featuring time-limited AWS S3 pre-signed URLs, JWT role-based access control, and integrated Gen-AI PDF summarization—engineered for direct-to-S3 asset streaming without server memory bottlenecks.",
     image: "/FileVault.png",
     tags: ["React", "Node.js", "Express.js", "MongoDB", "AWS S3", "JWT"],
     github: "https://github.com/adarshGit-hub/File-sharing-app",
     live: "https://file-sharing-app-px2e.vercel.app/",
     architectureDetails: {
       systemDesign:
-        "Direct-to-S3 pre-signed upload pipeline bypassing server memory bottlenecks, coupled with Express microservice metadata management.",
+        "Direct-to-S3 upload architecture using cryptographically signed pre-signed URLs, completely bypassing Node.js buffer bottlenecks while Express microservices cleanly index metadata and permissions.",
       keyFeatures: [
-        "Time-limited AWS S3 Pre-signed URLs for encrypted asset streaming",
-        "Role-Based Access Control (RBAC) and granular permission management",
-        "Integrated Gen-AI PDF summarizer for instantaneous document digest",
-        "Responsive glassmorphic file explorer with starred items and instant search",
+        "Time-limited AWS S3 Pre-signed URLs for encrypted asset streaming directly from edge storage",
+        "Granular Role-Based Access Control (RBAC) ensuring strict organizational data isolation without privilege escalation",
+        "Integrated Gen-AI PDF summarization engine that digests dense documents in seconds",
+        "Responsive glassmorphic file explorer with instant fuzzy search and star bookmarks",
       ],
       databaseSchema: "MongoDB Document collections for Users, Files, FileShares, and AuditLogs.",
       security: "Cryptographic JWT session tokens, HTTPS transport security, and short-lived S3 IAM policies.",
@@ -47,21 +47,21 @@ const projects: Project[] = [
   },
   {
     title: "Shapify",
-    tagline: "Collaborative Real-Time Whiteboard",
+    tagline: "Sub-15ms Real-Time Collaborative Canvas",
     description:
-      "Full-stack real-time collaborative vector canvas synchronized via WebSockets with sub-15ms broadcast latency, persistent PostgreSQL shape stores, and Prisma ORM.",
+      "Full-stack real-time collaborative whiteboard where vector updates broadcast across connected clients in under 15ms via WebSockets. Powered by Next.js, Prisma ORM, and PostgreSQL—delivering responsive multi-cursor coordination.",
     image: "/Shapify.png",
     tags: ["Next.js", "TypeScript", "WebSockets", "Prisma ORM", "PostgreSQL"],
     github: "https://github.com/adarshGit-hub/Shapify---Collaborative-Real-Time-Whiteboard",
     live: "https://ai-trading-insight-tool.vercel.app/",
     architectureDetails: {
       systemDesign:
-        "Bi-directional WebSocket broadcast mesh with conflict resolution, cursor multiplexing, and delta compression for real-time collaborative drawing.",
+        "Bi-directional WebSocket broadcast mesh engineered with delta compression, optimistic local rendering, and cursor multiplexing to eliminate collaborative lag.",
       keyFeatures: [
-        "Sub-15ms vector broadcast synchronization between concurrent clients",
-        "Freehand bezier drawing, geometric primitive transforms, and undo/redo stacks",
-        "Prisma ORM schema migrations with relational PostgreSQL geometry storage",
-        "Next.js App Router performance optimizations and selective canvas re-rendering",
+        "Sub-15ms vector broadcast synchronization between concurrent browser sessions",
+        "Smooth bezier freehand drawing, geometric primitive transforms, and full undo/redo transaction stacks",
+        "Type-safe Prisma ORM schema migrations with persistent PostgreSQL vector state",
+        "Next.js App Router performance optimizations with selective canvas re-rendering to keep frame rates locked at 60fps",
       ],
       databaseSchema: "PostgreSQL relational tables for Rooms, Users, CanvasShapes, and Snapshots.",
       security: "WebSocket handshake authentication with JWT validation and room-level authorization.",
@@ -69,20 +69,20 @@ const projects: Project[] = [
   },
   {
     title: "Beiyo Platform",
-    tagline: "Hostel Management Scaled to $1M Valuation",
+    tagline: "Student Housing Platform Scaled to $1M Valuation",
     description:
-      "Proprietary hostel accommodation and operations management platform scaled to a $1M valuation in its first year, featuring high-availability Node.js microservices and React admin telemetry.",
+      "The operational backbone that scaled a student accommodation platform to a $1M valuation in 9 months. Handled 100+ beds, 90%+ occupancy, real-time rent collection, and resident onboarding with high-availability microservices.",
     image: "/Beiyo.jpg",
     tags: ["React", "Node.js", "MongoDB", "AWS EC2", "Microservices"],
     live: "https://beiyo.in/",
     architectureDetails: {
       systemDesign:
-        "Distributed service architecture managing inventory, bookings, student check-ins, and multi-tenant admin dashboards with real-time operational state.",
+        "Distributed multi-tenant microservices architecture orchestrating bed inventory, automated billing cycles, resident KYC, and real-time operational analytics.",
       keyFeatures: [
-        "Scaled platform to $1M valuation within 12 months through rapid feature delivery",
-        "React-based operational admin dashboards with real-time analytics telemetry",
-        "Node.js microservices handling concurrent booking transactions and resident data",
-        "Automated deployment pipelines hosted on AWS infrastructure with high availability",
+        "Propelled platform to $1M valuation in 9 months through focused product-market fit and agile code iteration",
+        "High-availability Node.js microservices built to handle concurrent booking spikes smoothly",
+        "Interactive React admin dashboards replacing antiquated paper registers with real-time occupancy telemetry",
+        "Cloud-hosted on AWS with automated deployment pipelines ensuring 99.9% platform uptime",
       ],
       databaseSchema: "MongoDB multi-tenant clusters partitioning properties, tenants, and financial transactions.",
       security: "Role-based administrative gating, secure session cookies, and encrypted customer data storage.",
@@ -260,7 +260,7 @@ export default function Projects() {
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1 w-fit">
             <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
             <span className="font-mono text-[10px] font-semibold tracking-wider text-cyan-300 uppercase">
-              ENGINEERING LABS &amp; PRODUCTION APPS
+              PRODUCTION LABS &amp; SHIPPED SYSTEMS
             </span>
           </div>
 
@@ -268,7 +268,7 @@ export default function Projects() {
             Flagship Engineering Systems
           </h2>
           <p className="font-mono text-sm text-zinc-400 max-w-2xl">
-            Real-time collaborative canvases, encrypted cloud storage platforms, and scaled microservices architectures.
+            Real-time collaborative canvases, encrypted cloud storage vaults, and production platforms built to survive real traffic.
           </p>
         </div>
 

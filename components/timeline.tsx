@@ -19,66 +19,66 @@ interface Milestone {
 
 const milestones: Milestone[] = [
   {
-    company: "Hotwax Commerce",
+    company: "HotWax Commerce",
     role: "Software Engineer Intern",
     period: "Feb '26 — Present",
     location: "Enterprise Connector & OMS",
-    badge: "CURRENT ROLE",
+    badge: "ENTERPRISE SCALE",
     description:
-      "Engineering native enterprise data pipelines and inventory synchronization modules across the HotWax Order Management System (OMS) and Shopify ecosystem.",
+      "Engineering enterprise inventory routing and high-throughput data pipelines across HotWax OMS and the Shopify ecosystem, ensuring distributed state and inventory availability stay strictly synchronized.",
     metrics: [
       { label: "Integration Logic", value: "840+ Lines" },
-      { label: "Unit Test Suites", value: "325+ Lines" },
-      { label: "Core Backend Files", value: "8 Deprecated" },
-      { label: "Defects Resolved", value: "16 UI/UX" },
+      { label: "Test Coverage", value: "325+ Lines" },
+      { label: "Legacy Deprecated", value: "8 Core Files" },
+      { label: "UI Defects Resolved", value: "16 UI/UX" },
     ],
     highlights: [
-      "Architected a native data import pipeline for Available-To-Promise (ATP) inventory rules using Moqui DataManager and Vue.js, deprecating legacy SFTP-based batch systems across 8 core backend files to significantly optimize database read efficiency.",
-      "Engineered a Shopify Product Location Activation synchronization module within the enterprise connector platform using Groovy and XML, developing 840+ lines of robust integration logic to accurately map physical inventory across e-commerce channels.",
-      "Automated critical integration validation by authoring comprehensive unit test suites for ATP processing and Shopify refund workflows, deploying over 325 lines of test scripts to ensure continuous stability of the HotWax OMS ecosystem.",
-      "Resolved 16 complex UI/UX anomalies and API desynchronization defects in the Vue.js Order Manager frontend, systematically enforcing strict input validation, correcting state-driven routing errors, and mitigating responsive layout truncations.",
+      "Architected a native data import pipeline for Available-To-Promise (ATP) inventory rules using Moqui DataManager and Vue.js, deprecating legacy SFTP-based batch systems across 8 core backend files to significantly optimize database read throughput.",
+      "Engineered the Shopify Product Location Activation synchronization module with Groovy & XML, developing 840+ lines of robust integration logic to guarantee digital storefronts accurately reflect physical warehouse stock.",
+      "Authored 325+ lines of comprehensive unit test suites for ATP processing and Shopify refund workflows, ensuring regression-free deployments across critical retail channels.",
+      "Diagnosed and resolved 16 complex UI/UX state anomalies in the Vue.js Order Manager, enforcing rigorous input validation and preventing state desynchronization during high-volume operations.",
     ],
     skills: ["Moqui DataManager", "Groovy", "XML", "Vue.js", "Shopify API", "Unit Testing", "Enterprise OMS"],
   },
   {
     company: "Beiyo",
-    role: "Product & Engineering Strategy Lead",
+    role: "Co-Founder & Product Strategy Lead",
     period: "Sep '23 — May '25",
-    location: "D2C Platform",
-    badge: "$1M+ VALUATION",
+    location: "D2C Student Housing Platform",
+    badge: "$1M VALUATION (9 MONTHS)",
     description:
-      "Co-founded and scaled a D2C hostel management and accommodation platform to a $1M valuation in its first year, steering full-stack architecture and feature delivery.",
+      "Co-founded and scaled a tech-driven student accommodation platform to a $1M valuation within 9 months—orchestrating full-stack microservices, 100+ beds, 90%+ occupancy, and learning that operational edge cases are best solved with clean architecture.",
     metrics: [
-      { label: "Valuation Scaled", value: "$1M (Year 1)" },
-      { label: "Architecture", value: "Microservices" },
-      { label: "Dashboards", value: "React + Node" },
-      { label: "Uptime", value: "99.9%" },
+      { label: "Valuation Scaled", value: "$1M in 9 Mo" },
+      { label: "Beds & Occupancy", value: "100+ (90%+)" },
+      { label: "Architecture", value: "Node Microservices" },
+      { label: "Platform Uptime", value: "99.9%" },
     ],
     highlights: [
-      "Built and scaled a D2C platform to a $1M valuation within its first year through streamlined product strategy and rapid engineering execution.",
-      "Contributed to development of Node.js microservices and React-based admin dashboards, supporting backend APIs, database workflows, and real-time platform features.",
-      "Spearheaded testing, production deployments, and cross-functional engineering coordination to ensure system scalability, high availability, and rapid feature iteration.",
+      "Scaled a D2C student accommodation platform to a $1M valuation within 9 months through focused product strategy and rapid engineering execution.",
+      "Engineered high-throughput Node.js microservices and intuitive React admin dashboards, replacing error-prone manual logs with real-time occupancy and booking workflows.",
+      "Directed AWS infrastructure deployments, load resilience, and cross-functional teams to maintain continuous 99.9% platform availability during peak admissions.",
     ],
     skills: ["Node.js", "React", "MongoDB", "AWS", "Product Strategy", "Microservices Architecture"],
   },
   {
-    company: "Independent / Freelance",
+    company: "Independent & Open Source",
     role: "Full-Stack & Systems Developer",
     period: "2024 — 2025",
     location: "Global Remote",
     badge: "PRODUCTION APPS",
     description:
-      "Crafting production-ready cloud applications, RESTful microservices, and real-time collaborative engines with modern JavaScript and TypeScript stacks.",
+      "Engineering low-latency collaborative tools, secure cloud file management platforms, and high-performance web applications with modern TypeScript and distributed architectures.",
     metrics: [
-      { label: "Latency", value: "< 20ms Sync" },
-      { label: "Security", value: "JWT + S3 Pre-sign" },
-      { label: "Databases", value: "PostgreSQL & Mongo" },
+      { label: "Broadcast Sync", value: "< 15ms Latency" },
+      { label: "Asset Security", value: "JWT + S3 Signed" },
+      { label: "Databases", value: "Postgres & Mongo" },
       { label: "Containers", value: "Docker / Linux" },
     ],
     highlights: [
-      "Developed and maintained full-stack web applications using React, Next.js, Node.js, and MongoDB with secure JWT authorization and role-based access control.",
-      "Engineered real-time state synchronization engines using WebSockets with sub-20ms broadcast latency.",
-      "Implemented cloud-native storage integrations with AWS S3 pre-signed URLs for time-limited secure asset delivery.",
+      "Developed full-stack web platforms using TypeScript, Next.js, and Node.js with airtight JWT authentication and granular role-based access control.",
+      "Architected real-time WebSocket state synchronization engines delivering sub-15ms vector broadcast latency—faster than human visual perception.",
+      "Implemented cloud-native storage integrations with AWS S3 pre-signed URLs, enabling secure, time-limited direct client uploads without bottlenecking server memory.",
     ],
     skills: ["Next.js", "TypeScript", "WebSockets", "Prisma ORM", "PostgreSQL", "Docker", "AWS S3"],
   },
@@ -101,7 +101,7 @@ export default function Timeline() {
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/25 bg-cyan-950/20 px-3.5 py-1 w-fit">
             <Briefcase className="h-3.5 w-3.5 text-cyan-400" />
             <span className="font-mono text-[10px] font-semibold tracking-wider text-cyan-300 uppercase">
-              PROFESSIONAL TRAJECTORY
+              BATTLE TESTED // PROFESSIONAL TRAJECTORY
             </span>
           </div>
 
@@ -109,7 +109,7 @@ export default function Timeline() {
             Work Experience &amp; Engineering Impact
           </h2>
           <p className="font-mono text-sm text-zinc-400 max-w-2xl">
-            A chronological timeline of production backend systems, enterprise OMS connectors, and scaled startups.
+            A chronological timeline of production backends, enterprise OMS integrations, and startup hustle where code met reality.
           </p>
         </div>
 
