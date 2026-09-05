@@ -1,93 +1,102 @@
-"use client";
+"use client"
 
-import React from "react";
-import { ensureGsap } from "@/lib/animations";
-
-const skills = [
-  "TypeScript",
-  "Next.js",
-  "React",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "Prisma",
-  "SQL",
-  "C++",
-  "Python",
-];
+import React from "react"
+import { motion } from "framer-motion"
+import { useSound } from "@/lib/sound-context"
+import { GraduationCap, Lightbulb, Compass, Award } from "lucide-react"
 
 export default function About() {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-
-  React.useEffect(() => {
-    const { gsap, ScrollTrigger } = ensureGsap();
-    if (!ref.current) return;
-
-    const el = ref.current;
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: "top 80%",
-      },
-    });
-    tl.fromTo(
-      el.querySelector(".about-line"),
-      { x: -24, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
-    ).fromTo(
-      el.querySelector(".divider-line"),
-      { scaleX: 0, opacity: 0 },
-      { scaleX: 1, opacity: 1, duration: 0.6, ease: "power2.out" },
-      "-=0.3"
-    );
-    return () => {
-      ScrollTrigger.getAll().forEach((s) => s.refresh());
-    };
-  }, []);
+  const { playHoverTick } = useSound()
 
   return (
-    <section id="about" className="px-6 md:px-10 lg:px-16 py-20">
-      <div ref={ref} className="max-w-6xl mx-auto">
-        <h2 className="about-line text-2xl md:text-3xl font-medium">
-          About Me
-        </h2>
-        <div className="divider-line mt-4 h-px bg-(--color-border) origin-left" />
-
-        <div className="mt-8 rounded-2xl  border-(--color-border) border bg-(--color-card)/30 backdrop-blur-xl p-6 card-pattern-noise card-outline-subtle">
-          <p className="text-muted-foreground leading-relaxed">
-            Entrepreneurial Computer Science undergrad who’s built and scaled
-            real products blending full-stack development, product strategy, and
-            execution to turn ideas into production-grade systems.
-          </p>
-
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-(--color-border) bg-(--color-card)/40 backdrop-blur-xl p-4  card-pattern-grid">
-              <h3 className="text-base md:text-lg font-medium">Education</h3>
-              <ul className="mt-2 text-sm md:text-base text-muted-foreground space-y-1">
-                <li>B.Tech Computer Science, From a not so good college :)</li>
-              </ul>
-            </div>
-
-            <div className="rounded-xl border border-(--color-border) bg-(--color-card)/40 backdrop-blur-xl p-4 card-pattern-grid">
-              <h3 className="text-base md:text-lg font-medium">Interests</h3>
-              <p className="mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">
-                Gen-AI, LLMs, DevOps, Automation, and building scalable SaaS products
-              </p>
-            </div>
+    <section id="about" className="relative px-4 sm:px-8 lg:px-12 py-20 lg:py-28 text-white">
+      <div className="mx-auto max-w-6xl">
+        {/* Section Header */}
+        <div className="flex flex-col gap-3 mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 w-fit">
+            <Compass className="h-3.5 w-3.5 text-zinc-300" />
+            <span className="font-mono text-[10px] font-semibold tracking-wider text-zinc-300 uppercase">
+              ENGINEERING PHILOSOPHY
+            </span>
           </div>
 
-          <div className="mt-6">
-            <h3 className="text-base md:text-lg font-medium">Core Skills</h3>
-            <div ref={ref} className="flex flex-wrap gap-3">
-              {skills.map((s) => (
-                <span key={s} className="skill-pill">
-                  {s}
-                </span>
-              ))}
-            </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+            About Adarsh Raghuwanshi
+          </h2>
+          <p className="font-mono text-sm text-zinc-400 max-w-2xl">
+            Software engineer, systems thinker, and product strategist driven by first-principles problem solving.
+          </p>
+        </div>
+
+        {/* Narrative Glass Card */}
+        <div className="rounded-3xl border border-white/15 bg-[#121216]/80 p-6 sm:p-10 shadow-2xl backdrop-blur-2xl">
+          <p className="text-base sm:text-xl font-normal leading-relaxed text-zinc-200">
+            I am a Software Engineer and Computer Science undergraduate at{" "}
+            <strong className="text-white font-semibold">SGSITS Indore</strong> (2022–2026) who bridges distributed backend
+            engineering with product strategy. From architecting enterprise systems and integrations at{" "}
+            <strong className="text-white font-semibold">HotWax Commerce</strong> to scaling{" "}
+            <strong className="text-white font-semibold">Beiyo to a $1M valuation</strong>, my focus is building resilient,
+            high-throughput architectures that solve mission-critical operational challenges.
+          </p>
+
+          {/* Core Pillars */}
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+            <motion.div
+              onMouseEnter={() => playHoverTick()}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl"
+            >
+              <div className="flex items-center gap-2.5 mb-3">
+                <GraduationCap className="h-4 w-4 text-white" />
+                <h3 className="font-mono text-xs font-bold text-white uppercase tracking-wider">
+                  Education &amp; Roots
+                </h3>
+              </div>
+              <p className="text-sm text-zinc-300 leading-relaxed font-mono">
+                B.Tech in Computer Science
+              </p>
+              <p className="text-xs text-zinc-400 font-mono mt-1">
+                Shri Govindram Seksaria Institute of Technology &amp; Science (SGSITS), Indore • 2022–2026
+              </p>
+            </motion.div>
+
+            <motion.div
+              onMouseEnter={() => playHoverTick()}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl"
+            >
+              <div className="flex items-center gap-2.5 mb-3">
+                <Lightbulb className="h-4 w-4 text-white" />
+                <h3 className="font-mono text-xs font-bold text-white uppercase tracking-wider">
+                  Coding Philosophy
+                </h3>
+              </div>
+              <p className="text-sm text-zinc-300 leading-relaxed font-mono">
+                Make it work ➔ make it right ➔ make it fast ➔ make it beautiful.
+              </p>
+              <p className="text-xs text-zinc-400 font-mono mt-1">
+                Zero premature optimization. Mathematical simplicity and robust telemetry over complexity.
+              </p>
+            </motion.div>
+
+            <motion.div
+              onMouseEnter={() => playHoverTick()}
+              className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl"
+            >
+              <div className="flex items-center gap-2.5 mb-3">
+                <Award className="h-4 w-4 text-white" />
+                <h3 className="font-mono text-xs font-bold text-white uppercase tracking-wider">
+                  Core Passions
+                </h3>
+              </div>
+              <p className="text-sm text-zinc-300 leading-relaxed font-mono">
+                Distributed Systems &amp; Real-Time
+              </p>
+              <p className="text-xs text-zinc-400 font-mono mt-1">
+                Low-latency WebSockets, Moqui enterprise pipelines, and Awwwards-caliber 3D WebGL webcraft.
+              </p>
+            </motion.div>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

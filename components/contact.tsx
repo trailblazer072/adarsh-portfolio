@@ -1,80 +1,192 @@
 "use client"
 
-import { Github, Linkedin, Mail } from "lucide-react"
-import Magnetic from "./magnetic"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import type React from "react"
+import React, { useState } from "react"
+import { useSound } from "@/lib/sound-context"
+import { Mail, Github, Linkedin, Copy, Check, Send, Phone, ArrowUpRight } from "lucide-react"
 
 export default function Contact() {
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const [copied, setCopied] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const { playHoverTick, playSuccessChime } = useSound()
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("adarshraghuwanshi072@gmail.com")
+    setCopied(true)
+    playSuccessChime()
+    setTimeout(() => setCopied(false), 2500)
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // You can wire this to a route action/API later.
-    console.log("[v0] contact form submitted")
+    setSubmitted(true)
+    playSuccessChime()
+    setTimeout(() => setSubmitted(false), 4000)
   }
 
   return (
-    <section id="contact" className="px-6 md:px-10 lg:px-16 py-24">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-start">
-        <div className="rounded-2xl border border-(--color-border) bg-(--color-card)/30 backdrop-blur-xl p-6 gap-5 flex flex-col">
-          <p className="text-2xl md:text-3xl ">{"Let’s create something impactful together."}</p>
-          <div className="mt-6 flex items-center gap-4">
-            <Magnetic>
+    <section id="contact" className="relative px-4 sm:px-8 lg:px-12 py-20 lg:py-28 text-white">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Left Column: Direct Outreach Console */}
+          <div className="lg:col-span-6 flex flex-col gap-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 w-fit">
+              <Mail className="h-3.5 w-3.5 text-zinc-300" />
+              <span className="font-mono text-[10px] font-semibold tracking-wider text-zinc-300 uppercase">
+                INITIATE CONTACT
+              </span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+              Let&apos;s Build Systems That Matter.
+            </h2>
+
+            <p className="text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">
+              Whether you have an enterprise integration to architect, high-concurrency systems to scale, or an impactful engineering role to fill — my inbox is open.
+            </p>
+
+            {/* Quick 1-Click Copy Email Console */}
+            <div className="rounded-2xl border border-white/15 bg-[#121216]/90 p-5 backdrop-blur-2xl">
+              <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider">
+                Direct Electronic Mail
+              </span>
+              <div className="mt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <span className="font-mono text-xs sm:text-sm font-semibold text-white truncate">
+                  adarshraghuwanshi072@gmail.com
+                </span>
+                <button
+                  onClick={copyEmail}
+                  onMouseEnter={() => playHoverTick()}
+                  className="flex items-center justify-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 font-mono text-xs font-medium text-white transition-all hover:bg-white hover:text-black w-fit"
+                >
+                  {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                  <span>{copied ? "COPIED" : "COPY"}</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Social & Direct Contact Links */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a
-                className="glow-hover inline-flex items-center gap-2 p-2 rounded-full border border-(--color-border)"
-                href="adarshraghuwanshi072@gmail.com"
-                aria-label="Email"
-              >
-                <Mail size={20} />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a
-                className="glow-hover inline-flex items-center gap-2 p-2 rounded-full border border-(--color-border)"
-                href="https://github.com/adarshGit-hub"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-              >
-                <Github size={20} />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a
-                className="glow-hover inline-flex items-center gap-2 p-2 rounded-full border border-(--color-border)"
                 href="https://www.linkedin.com/in/adarsh-raghuwanshi072/"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="LinkedIn"
+                onMouseEnter={() => playHoverTick()}
+                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/30 hover:bg-white/5"
               >
-                <Linkedin size={20} />
+                <div className="flex items-center gap-2.5">
+                  <Linkedin className="h-4 w-4 text-zinc-300" />
+                  <span className="font-mono text-xs font-semibold text-white">LinkedIn</span>
+                </div>
+                <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
               </a>
-            </Magnetic>
+
+              <a
+                href="https://github.com/trailblazer072"
+                target="_blank"
+                rel="noreferrer"
+                onMouseEnter={() => playHoverTick()}
+                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/30 hover:bg-white/5"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Github className="h-4 w-4 text-zinc-300" />
+                  <span className="font-mono text-xs font-semibold text-white">GitHub</span>
+                </div>
+                <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
+              </a>
+
+              <a
+                href="tel:+918823008688"
+                onMouseEnter={() => playHoverTick()}
+                className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/30 hover:bg-white/5"
+              >
+                <div className="flex items-center gap-2.5">
+                  <Phone className="h-4 w-4 text-zinc-300" />
+                  <span className="font-mono text-xs font-semibold text-white">+91-8823008688</span>
+                </div>
+                <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
+              </a>
+
+              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                <span className="font-mono text-xs text-zinc-400">Location</span>
+                <span className="font-mono text-xs font-semibold text-white">Indore, India</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Encrypted Message Transmission Form */}
+          <div className="lg:col-span-6">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-3xl border border-white/15 bg-[#121216]/90 p-6 sm:p-8 shadow-2xl backdrop-blur-3xl space-y-5"
+            >
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <span className="font-mono text-xs font-bold text-white uppercase tracking-wider">
+                  TRANSMIT MESSAGE
+                </span>
+                <span className="font-mono text-[10px] text-zinc-400">
+                  PROTOCOL: HTTPS_SECURE
+                </span>
+              </div>
+
+              <div>
+                <label htmlFor="contact-name" className="block font-mono text-xs text-zinc-300 mb-2">
+                  NAME / ORGANIZATION
+                </label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  required
+                  placeholder="Satya Nadella / YC Founder"
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/40"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="contact-email" className="block font-mono text-xs text-zinc-300 mb-2">
+                  RETURN ELECTRONIC MAIL
+                </label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  required
+                  placeholder="contact@company.com"
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/40"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="contact-message" className="block font-mono text-xs text-zinc-300 mb-2">
+                  PROJECT SPECIFICATION OR MESSAGE
+                </label>
+                <textarea
+                  id="contact-message"
+                  required
+                  rows={4}
+                  placeholder="Tell me about your distributed pipeline, product idea, or opportunity..."
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/40 resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                onMouseEnter={() => playHoverTick()}
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3.5 font-mono text-xs font-bold text-black shadow-lg transition-all hover:bg-zinc-200 active:scale-98"
+              >
+                {submitted ? (
+                  <>
+                    <Check className="h-4 w-4 text-emerald-600" />
+                    <span>TRANSMISSION CONFIRMED!</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <span>TRANSMIT DISPATCH</span>
+                  </>
+                )}
+              </button>
+            </form>
           </div>
         </div>
-
-        <form
-          onSubmit={onSubmit}
-          className="rounded-2xl border border-(--color-border) bg-(--color-card)/30 backdrop-blur-xl p-6 space-y-4"
-        >
-          <div>
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" name="name" placeholder="Your name" className="mt-2" required />
-          </div>
-          <div>
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" placeholder="you@example.com" className="mt-2" required />
-          </div>
-          <div>
-            <Label htmlFor="message">Message</Label>
-            <Textarea id="message" name="message" placeholder="How can I help?" className="mt-2 min-h-28" required />
-          </div>
-          <Button type="submit" className="w-full">
-            Send
-          </Button>
-        </form>
       </div>
     </section>
   )

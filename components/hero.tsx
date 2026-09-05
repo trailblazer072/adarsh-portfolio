@@ -1,50 +1,138 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import PerspectiveCard from "./perspective-card"
+import QuickStatsBox from "./quick-stats"
 import Magnetic from "./magnetic"
+import { useSound } from "@/lib/sound-context"
+import { ArrowDown, FileCode, Sparkles } from "lucide-react"
 
 export default function Hero() {
+  const { playHoverTick, currentPersona } = useSound()
+
   return (
-    <section id="home" className="relative min-h-[90dvh] grid place-items-center">
-      <div className="text-center px-6">
-        <motion.h1
-          className="text-balance text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight"
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: { opacity: 0, y: 16 },
-            show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-          }}
-        >
-          Adarsh Raghuwanshi
-        </motion.h1>
-
-        <motion.p
-          className="mt-4 text-muted-foreground text-lg md:text-xl"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.5 }}
-        >
-          Entrepreneur • Full-Stack Developer • Product Strategist 
-        </motion.p>
-
-        <div className="mt-10 flex items-center justify-center gap-4">
-          <Magnetic>
-            <a
-              href="#experience"
-              className="glow-hover px-5 py-2 rounded-full border border-(--color-border) bg-(--color-card)/40 backdrop-blur-xl"
+    <section
+      id="home"
+      className="relative min-h-[92vh] flex items-center justify-center px-4 sm:px-8 lg:px-12 py-12 lg:py-20"
+    >
+      <div className="mx-auto w-full max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* Left Column: Keynote Typography + Quick Stats Box */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
+            {/* Eyebrow Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 w-fit backdrop-blur-md"
             >
-              Dive in
-            </a>
-          </Magnetic>
-          <Magnetic>
-            <a
-              href="#contact"
-              className="glow-hover px-5 py-2 rounded-full border border-(--color-border) bg-(--color-card)/20 backdrop-blur-xl"
+              <Sparkles className="h-3.5 w-3.5 text-zinc-300" />
+              <span className="font-mono text-[11px] font-semibold tracking-wider text-zinc-300 uppercase">
+                FULL-STACK & DISTRIBUTED SYSTEMS
+              </span>
+            </motion.div>
+
+            {/* Main Apple Keynote Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
             >
-              Contact
-            </a>
-          </Magnetic>
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                <span className="text-white">ARCHITECTING</span><br />
+                <span className="bg-gradient-to-b from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent">
+                  SYSTEMS WITH RIGOR.
+                </span>
+              </h1>
+            </motion.div>
+
+            {/* Narrative Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="max-w-2xl text-sm sm:text-base lg:text-xl text-zinc-400 font-normal leading-relaxed"
+            >
+              Hi, I&apos;m <strong className="text-white font-semibold">Adarsh Raghuwanshi</strong>. Software engineer and CS undergraduate at{" "}
+              <strong className="text-zinc-200">SGSITS Indore</strong>. Architecting resilient distributed systems and enterprise integrations at{" "}
+              <strong className="text-zinc-200">HotWax Commerce</strong>, and scaling production platforms behind{" "}
+              <strong className="text-zinc-200">$1M+ startup Beiyo</strong>.
+            </motion.p>
+
+            {/* Active Persona Quote Strip with smooth 3s transition */}
+            <div className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-mono text-zinc-300 w-full max-w-xl shadow-lg backdrop-blur-md overflow-hidden">
+              <span className="h-2 w-2 flex-shrink-0 rounded-full bg-white shadow-[0_0_8px_#ffffff] animate-pulse" />
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentPersona.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  className="flex items-center gap-2 min-w-0 flex-1 overflow-hidden"
+                >
+                  <span className="text-white font-bold tracking-wider flex-shrink-0 text-[11px] sm:text-xs">
+                    {currentPersona.label}:
+                  </span>
+                  <span className="italic text-zinc-300 truncate text-[11px] sm:text-xs">
+                    &ldquo;{currentPersona.quote}&rdquo;
+                  </span>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Anubhav Choubey-Style Quick Stats HUD Box */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="pt-2"
+            >
+              <QuickStatsBox />
+            </motion.div>
+
+            {/* Action CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-3 w-full sm:w-auto"
+            >
+              <Magnetic>
+                <a
+                  href="#projects"
+                  onMouseEnter={() => playHoverTick()}
+                  className="group flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-3 font-mono text-xs font-bold text-black shadow-[0_4px_24px_rgba(255,255,255,0.25)] transition-all hover:bg-zinc-200 hover:scale-105 active:scale-95 text-center"
+                >
+                  <span>EXPLORE 3D SYSTEMS</span>
+                  <ArrowDown className="h-3.5 w-3.5 transition-transform group-hover:translate-y-0.5" />
+                </a>
+              </Magnetic>
+
+              <Magnetic>
+                <a
+                  href="#experience"
+                  onMouseEnter={() => playHoverTick()}
+                  className="flex items-center justify-center gap-2.5 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 font-mono text-xs font-medium text-zinc-200 backdrop-blur-xl transition-all hover:border-white/30 hover:bg-white/10 hover:text-white text-center"
+                >
+                  <FileCode className="h-3.5 w-3.5 text-zinc-400" />
+                  <span>EXPERIENCE &amp; CODE</span>
+                </a>
+              </Magnetic>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Apple Space Black 3D Perspective Card */}
+          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-full flex justify-center"
+            >
+              <PerspectiveCard />
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

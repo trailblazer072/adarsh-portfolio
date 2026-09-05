@@ -1,181 +1,398 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Github, ExternalLink } from "lucide-react"
+import React, { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import Link from "next/link"
+import { useSound } from "@/lib/sound-context"
+import { ExternalLink, Github, Layers, X, Sparkles, Terminal, CheckCircle2 } from "lucide-react"
 
-export default function Projects() {
-  const projects = [
-    {
-      title: "FileVault - Secure File Sharing Platform",
-      description: "Designed a responsive dashboard with file search, preview, starred items, and shareable secure links.",
-      image: "/FileVault.png",
-      tags: ["React", "Node.js", "Express", "MongoDB", "AWS S3", "JWT"],
-      github: "https://github.com/trailblazer072/File-sharing-app",
-      demo: "",
-      live: "https://file-sharing-app-px2e.vercel.app/",
-      inProduction: true
-    },
-    {
-      title: "Shapify - Collaborative Whiteboard",
-      description: "Developed a real-time collaborative whiteboard application with features like freehand drawing, shape creation, text editing, and undo/redo functionality.",
-      image: "/Shapify.png",
-      tags: ["TypeScript", "NextJs", "WebSockets", "Prisma ORM", "PostgreSQL"],
-      github: "https://github.com/trailblazer072/Shapify---Collaborative-Real-Time-Whiteboard",
-      demo: "",
-      live: "https://ai-trading-insight-tool.vercel.app/",
-      inProduction: true
-    },
-    // {
-    //   title: "PlayPlan – Your AI-content Planner",
-    //   description: "AI-powered Content Planner for users to paln their content posting",
-    //   image: "/Swing.jpg",
-    //   tags: ["TypeScript", "NextJS","React", "Node.js", "AI", "Clerk"],
-    //   github: "https://github.com/DakshBaxi/AI-content-planner",
-    //   demo: "",
-    //   live:"https://ai-content-planner.vercel.app/",
-    //   inProduction:true
-    // },
-    {
-      title: "Beiyo - Hostel Management",
-      description: "Scalable Hostel Management for a $1M Startup",
-      image: "/Beiyo.jpg",
-      tags: ["JavaScript", "React", "Node.js", "MongoDB", "AWS"],
-      github: "",
-      demo: "",
-      live: "https://beiyo.in/",
-      inProduction: true
-    },
-    // {
-    //   title: "Swing – Instagram DM Automation",
-    //   description: "AI-powered Instagram DM automation tool for businesses to engage with customers efficiently.",
-    //   image: "/Swing.jpg",
-    //   tags: ["TypeScript", "NextJS","React", "Node.js", "AI", "Clerk"],
-    //   github: "https://github.com/DakshBaxi/Swing-DM-automation",
-    //   demo: "",
-    //   live:"",
-    //   inProduction:false
-    // }
+interface Project {
+  title: string
+  tagline: string
+  description: string
+  image: string
+  tags: string[]
+  github?: string
+  live?: string
+  architectureDetails: {
+    systemDesign: string
+    keyFeatures: string[]
+    databaseSchema: string
+    security: string
+  }
+}
 
-    // {
-    //   title: "E-Commerce Platform",
-    //   description: "A full-featured e-commerce platform with payment processing, inventory management, and analytics.",
-    //   image: "/placeholder.svg?height=400&width=600",
-    //   tags: ["Next.js", "TypeScript", "Stripe", "MongoDB", "AWS"],
-    //   github: "https://github.com",
-    //   demo: "https://demo.com",
-    // },
-    // {
-    //   title: "AI Content Generator",
-    //   description: "A tool that uses AI to generate marketing content, blog posts, and social media captions.",
-    //   image: "/placeholder.svg?height=400&width=600",
-    //   tags: ["Python", "React", "OpenAI", "FastAPI", "Docker"],
-    //   github: "https://github.com",
-    //   demo: "https://demo.com",
-    // },
-  ]
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+const projects: Project[] = [
+  {
+    title: "FileVault",
+    tagline: "Secure Cloud Storage & AI Summarization",
+    description:
+      "Enterprise-grade MERN-based secure cloud storage platform with time-limited AWS S3 pre-signed URLs, JWT authorization, role-based access control, and an integrated AI PDF summarizer.",
+    image: "/FileVault.png",
+    tags: ["React", "Node.js", "Express.js", "MongoDB", "AWS S3", "JWT"],
+    github: "https://github.com/trailblazer072/File-sharing-app",
+    live: "https://file-sharing-app-px2e.vercel.app/",
+    architectureDetails: {
+      systemDesign:
+        "Direct-to-S3 pre-signed upload pipeline bypassing server memory bottlenecks, coupled with Express microservice metadata management.",
+      keyFeatures: [
+        "Time-limited AWS S3 Pre-signed URLs for encrypted asset streaming",
+        "Role-Based Access Control (RBAC) and granular permission management",
+        "Integrated Gen-AI PDF summarizer for instantaneous document digest",
+        "Responsive glassmorphic file explorer with starred items and instant search",
+      ],
+      databaseSchema: "MongoDB Document collections for Users, Files, FileShares, and AuditLogs.",
+      security: "Cryptographic JWT session tokens, HTTPS transport security, and short-lived S3 IAM policies.",
     },
+  },
+  {
+    title: "Shapify",
+    tagline: "Collaborative Real-Time Whiteboard",
+    description:
+      "Full-stack real-time collaborative vector canvas synchronized via WebSockets with sub-15ms broadcast latency, persistent PostgreSQL shape stores, and Prisma ORM.",
+    image: "/Shapify.png",
+    tags: ["Next.js", "TypeScript", "WebSockets", "Prisma ORM", "PostgreSQL"],
+    github: "https://github.com/trailblazer072/Shapify---Collaborative-Real-Time-Whiteboard",
+    live: "https://ai-trading-insight-tool.vercel.app/",
+    architectureDetails: {
+      systemDesign:
+        "Bi-directional WebSocket broadcast mesh with conflict resolution, cursor multiplexing, and delta compression for real-time collaborative drawing.",
+      keyFeatures: [
+        "Sub-15ms vector broadcast synchronization between concurrent clients",
+        "Freehand bezier drawing, geometric primitive transforms, and undo/redo stacks",
+        "Prisma ORM schema migrations with relational PostgreSQL geometry storage",
+        "Next.js App Router performance optimizations and selective canvas re-rendering",
+      ],
+      databaseSchema: "PostgreSQL relational tables for Rooms, Users, CanvasShapes, and Snapshots.",
+      security: "WebSocket handshake authentication with JWT validation and room-level authorization.",
+    },
+  },
+  {
+    title: "Beiyo Platform",
+    tagline: "Hostel Management Scaled to $1M Valuation",
+    description:
+      "Proprietary hostel accommodation and operations management platform scaled to a $1M valuation in its first year, featuring high-availability Node.js microservices and React admin telemetry.",
+    image: "/Beiyo.jpg",
+    tags: ["React", "Node.js", "MongoDB", "AWS EC2", "Microservices"],
+    live: "https://beiyo.in/",
+    architectureDetails: {
+      systemDesign:
+        "Distributed service architecture managing inventory, bookings, student check-ins, and multi-tenant admin dashboards with real-time operational state.",
+      keyFeatures: [
+        "Scaled platform to $1M valuation within 12 months through rapid feature delivery",
+        "React-based operational admin dashboards with real-time analytics telemetry",
+        "Node.js microservices handling concurrent booking transactions and resident data",
+        "Automated deployment pipelines hosted on AWS infrastructure with high availability",
+      ],
+      databaseSchema: "MongoDB multi-tenant clusters partitioning properties, tenants, and financial transactions.",
+      security: "Role-based administrative gating, secure session cookies, and encrypted customer data storage.",
+    },
+  },
+]
+
+// 3D Perspective Tilt Card Sub-Component
+function ProjectCard({
+  project,
+  onOpenDetails,
+}: {
+  project: Project
+  onOpenDetails: (p: Project) => void
+}) {
+  const cardRef = React.useRef<HTMLDivElement | null>(null)
+  const [rotX, setRotX] = useState(0)
+  const [rotY, setRotY] = useState(0)
+  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 })
+  const { playHoverTick, playCardTilt } = useSound()
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+
+    const rY = ((x - centerX) / centerX) * 8
+    const rX = -((y - centerY) / centerY) * 8
+
+    setRotX(rX)
+    setRotY(rY)
+    setGlare({ x: (x / rect.width) * 100, y: (y / rect.height) * 100, opacity: 0.18 })
   }
 
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  const handleMouseLeave = () => {
+    setRotX(0)
+    setRotY(0)
+    setGlare({ x: 50, y: 50, opacity: 0 })
   }
 
   return (
-    <section id="projects" className="py-16 md:py-24">
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => {
+        playHoverTick()
+        playCardTilt()
+      }}
+      onMouseLeave={handleMouseLeave}
+      className="group relative flex flex-col justify-between overflow-hidden rounded-[26px] border border-white/15 bg-[#121216]/90 p-5 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] backdrop-blur-2xl transition-all duration-200 hover:border-white/30"
+      style={{
+        transform: `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`,
+        transformStyle: "preserve-3d",
+      }}
+    >
+      {/* Specular Glare Follow Vector */}
+      <div
+        className="pointer-events-none absolute inset-0 z-20 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(circle 300px at ${glare.x}% ${glare.y}%, rgba(255, 255, 255, ${glare.opacity}), transparent 70%)`,
+        }}
+        aria-hidden="true"
+      />
 
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
-          <div className="h-1 w-20 bg-primary mx-auto rounded-full"></div>
-          <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            Here are some of my recent projects. Each project showcases different skills and technologies.
+      {/* Top Banner Image with Live Status Pill */}
+      <div>
+        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[18px] border border-white/10 bg-zinc-950">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 400px"
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          />
+
+          {/* Status badge */}
+          <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/70 px-2.5 py-1 backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="font-mono text-[9px] font-semibold text-white uppercase tracking-wider">
+              ONLINE
+            </span>
+          </div>
+        </div>
+
+        {/* Title & Tagline */}
+        <div className="mt-5">
+          <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-zinc-100">
+            {project.title}
+          </h3>
+          <p className="mt-1 font-mono text-xs text-zinc-400">
+            {project.tagline}
           </p>
-        </motion.div>
+          <p className="mt-3 text-xs sm:text-sm text-zinc-300 line-clamp-3 leading-relaxed">
+            {project.description}
+          </p>
+        </div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-8"
-        >
-          {projects.map((project, index) => (
-
-            <motion.div key={index} variants={item} className="w-full max-w-sm">
-              <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 relative pt-0">
-                {project.inProduction === false && (
-                  <div className="absolute top-2 right-2 z-10">
-                    <Badge className="bg-white opacity-60 text-black">In Progress</Badge>
-                  </div>
-                )}
-                <div className="relative h-48 overflow-hidden">
-
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    layout="fill"
-                    className="object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle className="leading-normal">{project.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <p className="text-muted-foreground mb-4 ">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, i) => (
-                      <Badge key={i} variant="secondary">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  {
-                    project.github !== "" && (
-                      <Button asChild variant="outline" size="sm">
-                        <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                          <Github className="h-4 w-4 mr-2" /> Code
-                        </Link>
-                      </Button>
-                    )
-                  }
-                  {project.demo !== "" && (<Button asChild size="sm">
-                    <Link href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-4 w-4 mr-2" /> Demo
-                    </Link>
-                  </Button>)}
-                  {project.live !== "" && (<Button asChild size="sm">
-                    <Link href={project.live} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-4 w-4 mr-2" /> Live
-                    </Link>
-                  </Button>)}
-                </CardFooter>
-              </Card>
-            </motion.div>
+        {/* Technology Badges */}
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {project.tags.map((t) => (
+            <span
+              key={t}
+              className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-0.5 font-mono text-[10px] text-zinc-300"
+            >
+              {t}
+            </span>
           ))}
-        </motion.div>
+        </div>
       </div>
+
+      {/* Action Footer */}
+      <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
+        <button
+          onClick={() => onOpenDetails(project)}
+          onMouseEnter={() => playHoverTick()}
+          className="flex items-center gap-1.5 font-mono text-xs font-semibold text-zinc-300 hover:text-white transition-colors"
+        >
+          <Layers className="h-3.5 w-3.5 text-zinc-400" />
+          <span>ARCHITECTURE DOCS</span>
+        </button>
+
+        <div className="flex items-center gap-2">
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => playHoverTick()}
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-zinc-300 transition-colors hover:border-white/30 hover:bg-white/10 hover:text-white"
+              title="View GitHub Repository"
+            >
+              <Github className="h-4 w-4" />
+            </a>
+          )}
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => playHoverTick()}
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/20 bg-white text-black transition-transform hover:scale-105"
+              title="Open Live Application"
+            >
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const { playHoverTick, playPersonaBlip } = useSound()
+
+  const openDetails = (p: Project) => {
+    playPersonaBlip()
+    setSelectedProject(p)
+  }
+
+  const closeDetails = () => {
+    playHoverTick()
+    setSelectedProject(null)
+  }
+
+  return (
+    <section id="projects" className="relative px-4 sm:px-8 lg:px-12 py-20 lg:py-28 text-white">
+      <div className="mx-auto max-w-7xl">
+        {/* Section Header */}
+        <div className="flex flex-col gap-3 mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 w-fit">
+            <Sparkles className="h-3.5 w-3.5 text-zinc-300" />
+            <span className="font-mono text-[10px] font-semibold tracking-wider text-zinc-300 uppercase">
+              ENGINEERING LABS &amp; PRODUCTION APPS
+            </span>
+          </div>
+
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+            Flagship Engineering Systems
+          </h2>
+          <p className="font-mono text-sm text-zinc-400 max-w-2xl">
+            Real-time collaborative canvases, encrypted cloud storage platforms, and scaled microservices architectures.
+          </p>
+        </div>
+
+        {/* 3D Kinetic Perspective Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {projects.map((p) => (
+            <ProjectCard key={p.title} project={p} onOpenDetails={openDetails} />
+          ))}
+        </div>
+      </div>
+
+      {/* System Architecture Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeDetails}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            />
+
+            {/* Modal Dialog */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl border border-white/20 bg-[#141418] p-5 sm:p-8 shadow-2xl backdrop-blur-3xl"
+            >
+              {/* Close Button */}
+              <button
+                onClick={closeDetails}
+                aria-label="Close architecture details"
+                className="absolute top-4 sm:top-5 right-4 sm:right-5 flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-400 transition-colors hover:bg-white/10 hover:text-white z-10"
+              >
+                <X className="h-4 w-4" />
+              </button>
+
+              <div className="flex items-center gap-3 pr-10">
+                <Terminal className="h-5 w-5 text-zinc-300 flex-shrink-0" />
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white truncate">
+                  {selectedProject.title} // Dossier
+                </h3>
+              </div>
+              <p className="mt-1 font-mono text-xs text-zinc-400">
+                {selectedProject.tagline}
+              </p>
+
+              {/* Architecture Sections */}
+              <div className="mt-6 space-y-4 sm:space-y-5">
+                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
+                  <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-2">
+                    System Architecture &amp; Data Pipeline
+                  </h4>
+                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                    {selectedProject.architectureDetails.systemDesign}
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4">
+                  <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-2">
+                    Core Technical Implementations
+                  </h4>
+                  <ul className="space-y-2">
+                    {selectedProject.architectureDetails.keyFeatures.map((kf, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                        <span>{kf}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                  <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5 sm:p-4">
+                    <h4 className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-zinc-400 mb-1.5">
+                      Database Model
+                    </h4>
+                    <p className="font-mono text-[11px] sm:text-xs text-zinc-300">
+                      {selectedProject.architectureDetails.databaseSchema}
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3.5 sm:p-4">
+                    <h4 className="font-mono text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-zinc-400 mb-1.5">
+                      Security &amp; Authorization
+                    </h4>
+                    <p className="font-mono text-[11px] sm:text-xs text-zinc-300">
+                      {selectedProject.architectureDetails.security}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Actions */}
+              <div className="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-3 pt-4 border-t border-white/10">
+                {selectedProject.github && (
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 font-mono text-xs font-medium text-zinc-200 transition-colors hover:bg-white/10 hover:text-white text-center"
+                  >
+                    <Github className="h-4 w-4" />
+                    <span>View Code</span>
+                  </a>
+                )}
+                {selectedProject.live && (
+                  <a
+                    href={selectedProject.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-2.5 font-mono text-xs font-bold text-black shadow-lg transition-transform hover:scale-105 text-center"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    <span>Launch Live System</span>
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
