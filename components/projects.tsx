@@ -30,7 +30,7 @@ const projects: Project[] = [
       "Enterprise-grade MERN-based secure cloud storage platform with time-limited AWS S3 pre-signed URLs, JWT authorization, role-based access control, and an integrated AI PDF summarizer.",
     image: "/FileVault.png",
     tags: ["React", "Node.js", "Express.js", "MongoDB", "AWS S3", "JWT"],
-    github: "https://github.com/trailblazer072/File-sharing-app",
+    github: "https://github.com/adarshGit-hub/File-sharing-app",
     live: "https://file-sharing-app-px2e.vercel.app/",
     architectureDetails: {
       systemDesign:
@@ -52,7 +52,7 @@ const projects: Project[] = [
       "Full-stack real-time collaborative vector canvas synchronized via WebSockets with sub-15ms broadcast latency, persistent PostgreSQL shape stores, and Prisma ORM.",
     image: "/Shapify.png",
     tags: ["Next.js", "TypeScript", "WebSockets", "Prisma ORM", "PostgreSQL"],
-    github: "https://github.com/trailblazer072/Shapify---Collaborative-Real-Time-Whiteboard",
+    github: "https://github.com/adarshGit-hub/Shapify---Collaborative-Real-Time-Whiteboard",
     live: "https://ai-trading-insight-tool.vercel.app/",
     architectureDetails: {
       systemDesign:

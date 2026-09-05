@@ -116,7 +116,7 @@ export default function Contact() {
               </a>
 
               <a
-                href="https://github.com/trailblazer072"
+                href="https://github.com/adarshGit-hub"
                 target="_blank"
                 rel="noreferrer"
                 onMouseEnter={() => playHoverTick()}
