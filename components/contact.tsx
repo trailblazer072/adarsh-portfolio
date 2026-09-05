@@ -2,11 +2,13 @@
 
 import React, { useState } from "react"
 import { useSound } from "@/lib/sound-context"
-import { Mail, Github, Linkedin, Copy, Check, Send, Phone, ArrowUpRight } from "lucide-react"
+import { Mail, Github, Linkedin, Copy, Check, Send, Phone, ArrowUpRight, Loader2, AlertCircle } from "lucide-react"
 
 export default function Contact() {
   const [copied, setCopied] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [statusMessage, setStatusMessage] = useState("")
   const { playHoverTick, playSuccessChime } = useSound()
 
   const copyEmail = () => {
@@ -16,11 +18,44 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2500)
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmitted(true)
-    playSuccessChime()
-    setTimeout(() => setSubmitted(false), 4000)
+    if (!formData.name || !formData.email || !formData.message) return
+
+    setStatus("submitting")
+    setStatusMessage("")
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+
+      if (res.ok && data.success) {
+        setStatus("success")
+        setStatusMessage(
+          data.activationNeeded
+            ? "Activation required: One-time activation link dispatched to adarshraghuwanshi072@gmail.com! Please check your Gmail to confirm."
+            : "Transmission confirmed! Your dispatch has been delivered to Adarsh's inbox."
+        )
+        setFormData({ name: "", email: "", message: "" })
+        playSuccessChime()
+        setTimeout(() => {
+          setStatus("idle")
+          setStatusMessage("")
+        }, 8000)
+      } else {
+        setStatus("error")
+        setStatusMessage(data.error || "Failed to transmit dispatch. Gateway returned an error.")
+      }
+    } catch (err) {
+      console.error("Submission error:", err)
+      setStatus("error")
+      setStatusMessage("Network error: Could not reach transmission gateway.")
+    }
   }
 
   return (
@@ -136,8 +171,11 @@ export default function Contact() {
                   id="contact-name"
                   type="text"
                   required
+                  disabled={status === "submitting"}
+                  value={formData.name}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                   placeholder="Satya Nadella / YC Founder"
-                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40"
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40 disabled:opacity-50"
                 />
               </div>
 
@@ -149,8 +187,11 @@ export default function Contact() {
                   id="contact-email"
                   type="email"
                   required
+                  disabled={status === "submitting"}
+                  value={formData.email}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
                   placeholder="contact@company.com"
-                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40"
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40 disabled:opacity-50"
                 />
               </div>
 
@@ -162,17 +203,26 @@ export default function Contact() {
                   id="contact-message"
                   required
                   rows={4}
+                  disabled={status === "submitting"}
+                  value={formData.message}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                   placeholder="Tell me about your distributed pipeline, product idea, or opportunity..."
-                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40 resize-none"
+                  className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-mono text-xs text-white placeholder:text-zinc-600 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400/40 resize-none disabled:opacity-50"
                 />
               </div>
 
               <button
                 type="submit"
+                disabled={status === "submitting"}
                 onMouseEnter={() => playHoverTick()}
-                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-200 py-3.5 font-mono text-xs font-bold text-black shadow-[0_0_22px_rgba(0,242,254,0.35)] transition-all hover:shadow-[0_0_32px_rgba(0,242,254,0.5)] active:scale-98 cursor-pointer"
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-200 py-3.5 font-mono text-xs font-bold text-black shadow-[0_0_22px_rgba(0,242,254,0.35)] transition-all hover:shadow-[0_0_32px_rgba(0,242,254,0.5)] active:scale-98 disabled:opacity-60 cursor-pointer"
               >
-                {submitted ? (
+                {status === "submitting" ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin text-black" />
+                    <span>TRANSMITTING DISPATCH...</span>
+                  </>
+                ) : status === "success" ? (
                   <>
                     <Check className="h-4 w-4 text-black" />
                     <span>TRANSMISSION CONFIRMED!</span>
@@ -184,6 +234,38 @@ export default function Contact() {
                   </>
                 )}
               </button>
+
+              {/* Status and Feedback Alerts */}
+              {statusMessage && (
+                <div
+                  className={`rounded-xl p-3.5 font-mono text-xs leading-relaxed border transition-all ${
+                    status === "success"
+                      ? "border-cyan-500/40 bg-cyan-950/40 text-cyan-200 shadow-[0_0_15px_rgba(0,242,254,0.15)]"
+                      : "border-red-500/40 bg-red-950/40 text-red-200"
+                  }`}
+                >
+                  <div className="flex items-start gap-2.5">
+                    {status === "success" ? (
+                      <Check className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                    ) : (
+                      <AlertCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-0.5" />
+                    )}
+                    <div className="flex-1 space-y-1.5">
+                      <p>{statusMessage}</p>
+                      {status === "error" && (
+                        <a
+                          href={`mailto:adarshraghuwanshi072@gmail.com?subject=${encodeURIComponent(
+                            "Portfolio Inquiry from " + (formData.name || "Visitor")
+                          )}&body=${encodeURIComponent(formData.message)}`}
+                          className="inline-flex items-center gap-1.5 font-bold text-cyan-300 hover:underline pt-1"
+                        >
+                          <span>Click here to dispatch directly via your native mail app ➔</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </form>
           </div>
         </div>
